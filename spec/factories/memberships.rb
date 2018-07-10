@@ -1,7 +1,10 @@
 FactoryBot.define do
   factory :membership do
-    user_id 1
-    council_id 1
-    active false
+
+    user
+    council
+ 
+    active true
+
   end
 end

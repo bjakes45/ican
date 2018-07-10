@@ -1,7 +1,9 @@
 FactoryBot.define do
   factory :council do
-    user_id 1
-    title "MyString"
-    description "MyText"
+    
+    user
+    sequence(:title) { |n| "title#{n}" }
+    description 'a' * 20
+    
   end
 end
