@@ -11,9 +11,10 @@ Rails.application.routes.draw do
     get 'signup', to: 'devise/registrations#new'
   end
   
-  resources :councils
-  resources :posts
-  resources :memberships
+  resources :councils do
+    resources :posts
+    resources :memberships
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

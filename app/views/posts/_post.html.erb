@@ -1,4 +1,4 @@
-<div class="col-sm-4 single-post-card" id=<%= post_path(post.id) %>>
+<div class="col-sm-4 single-post-card" id=<%= council_post_path(post.council.id, post.id) %>>
   <div class="card">
     <div class="card-block">
       <h4 class="post-text">
@@ -8,7 +8,7 @@
         <div class="posted-by">Created by <%= post.user.name %></div>
         <h3><%= post.title %></h3> 
         <p><%= post.content %></p>
-        <%= link_to "I'm interested", post_path(post.id), class: 'interested' %>
+        <%= link_to "I'm interested", council_post_path(post.council.id, post.id), class: 'interested' %>
       </div>
     </div>
   </div><!-- card -->
