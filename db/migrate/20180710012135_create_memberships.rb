@@ -3,7 +3,7 @@ class CreateMemberships < ActiveRecord::Migration
     create_table :memberships do |t|
       t.belongs_to :user, index: true
       t.belongs_to :council, index: true
-      t.boolean :active
+      t.boolean :active, default: false
 
       t.timestamps null: false
     end

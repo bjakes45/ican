@@ -5,7 +5,8 @@ class CouncilsController < ApplicationController
 	end
 
 	def show
-		@council = Council.find(params[:id]) 
+		@council = Council.find(params[:id])
+		@posts = @council.posts
 	end
 
 end

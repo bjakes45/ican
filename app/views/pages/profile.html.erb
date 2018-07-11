@@ -1,0 +1,20 @@
+<%= render 'councils/modal' %>
+<div class="container">
+  <div class="row">
+    <div id="side-menu"  class="col-sm-3">
+    	<%= @memberships.length %>
+    </div><!-- side-menu -->
+
+    <div id="main-content" class="col-sm-9">
+	
+		<% @user.memberships.each do |m| %>
+			<%= render m.council %>
+			<%= m.id %>
+
+		<% end %>
+
+
+    </div><!-- main-content -->
+
+  </div><!-- row -->
+</div><!-- container -->

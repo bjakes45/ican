@@ -1,9 +1,18 @@
-<div id="single-post-content" class="container">
+<%= render 'posts/modal' %>
+<div class="container">
   <div class="row">
-    <div class="col-sm-6 col-sm-offset-3">
+    <div id="side-menu"  class="col-sm-3">
       <div class="posted-by">Posted by <%= @council.user.name %></div>
       <h3><%= @council.title %></h3>
       <p><%= @council.description %></p>
-    </div>
+      <p><%= @posts.length %></p>
+    </div><!-- side-menu -->
+
+    <div id="main-content" class="col-sm-9">
+	   
+     <%= render @posts %> 
+
+    </div><!-- main-content -->
+
   </div><!-- row -->
-</div>
+</div><!-- container -->

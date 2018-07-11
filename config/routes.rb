@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root to: 'pages#index'
-  
+  get 'profile', to: 'pages#profile'  
   devise_for :users, :controllers => {:registrations => "registrations"}
   
   devise_scope :user do
@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   end
   
   resources :councils
+  resources :posts
   resources :memberships
 
   # The priority is based upon order of creation: first created -> highest priority.

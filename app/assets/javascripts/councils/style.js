@@ -1,15 +1,15 @@
 $(document).on('turbolinks:load', function() {
-    if ($(".single-post-card").length) {
+    if ($(".single-council-card").length) {
         // set a solid background color style
         if (mode == 1) {
-            $(".single-post-card").each(function() {
+            $(".single-council-card").each(function() {
                 $(this).addClass("solid-color-mode");
                 $(this).css('background-color', randomColor());
             });
         }
         // set a border color style
         else {
-            $(".single-post-card").each(function() {
+            $(".single-council-card").each(function() {
                 $(this).addClass("border-color-mode");
                 $(this).css('border', '5px solid ' + randomColor());
             });
@@ -17,11 +17,11 @@ $(document).on('turbolinks:load', function() {
     }
 
 
-    $('#feed').on( 'mouseenter', '.single-post-list', function() {
+    $('#feed').on( 'mouseenter', '.single-council-list', function() {
         $(this).css('border-color', randomColor());	
     });
 
-    $('#feed').on( 'mouseleave', '.single-post-list', function() {
+    $('#feed').on( 'mouseleave', '.single-council-list', function() {
         $(this).css('border-color', 'rgba(0, 0 , 0, 0.05)');	
     });
 

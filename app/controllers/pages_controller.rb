@@ -5,6 +5,7 @@ class PagesController < ApplicationController
 	end
 
 	def profile
-
+		@user = current_user
+		@memberships = Membership.all
 	end
 end

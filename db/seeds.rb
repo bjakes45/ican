@@ -32,18 +32,37 @@ def seed_councils
 end
 
 def seed_memberships
- 	users = User.all
+  users = User.all
 
-  	users.each do |user|
-      	Membership.create(
-	        user_id: user.id, 
-	        council_id: rand(1..4),
+    users.each do |user|
+        Membership.create(
+          user_id: user.id, 
+          council_id: rand(1..4),
           active: true
-	    )
+      )
     end
+
+end
+
+def seed_posts
+  councils = Council.all
+
+  councils.each do |council|
+    5.times do
+      Post.create(
+        title: Faker::Lorem.sentences[0], 
+        content: Faker::Lorem.sentences[0], 
+        user_id: rand(1..9), 
+        council_id: council.id,
+        closed: false,
+        motion: false
+      )
+    end
+   end
 
 end
 
 seed_users
 seed_councils
 seed_memberships
+seed_posts
