@@ -19,6 +19,15 @@
     border-radius: 1%;
   }
 }
+.council-text-top {
+  min-height: 53px;
+  max-height: 53px;
+  overflow: hidden;
+}
+.council-text-bottom {
+  text-align: right;
+  padding-top: 20px;  
+}
 
 .council-content {
   display: none;

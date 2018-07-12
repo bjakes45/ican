@@ -2,7 +2,12 @@
   <div class="card">
     <div class="card-block">
       <h4 class="council-text">
+        <div class="council-text-top">
         <%= truncate(council.title, :length => 60) %>
+        </div>
+        <div class="council-text-bottom">
+          Members: <%= council.memberships.where(active: true).length %>
+        </div>
       </h4>
       <div class="council-content">
         <div class="posted-by">Created by <%= council.user.name %></div>

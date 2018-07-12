@@ -21,12 +21,14 @@ end
 
 def seed_councils
 
+    council_id = 0
     5.times do
       Council.create(
-        title: Faker::Lorem.sentences[0], 
+        title: "Council#{council_id}", 
         description: Faker::Lorem.sentences[0], 
         user_id: rand(1..9), 
       )
+      council_id = council_id + 1
     end
 
 end

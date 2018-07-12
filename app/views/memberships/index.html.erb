@@ -1,20 +1,20 @@
-<%= render 'posts/modal' %>
 <div class="container">
   <div class="row">
     <div id="side-menu"  class="col-sm-3">
-    
+      
       <h3><%= @council.title %></h3>
-      <p><%= link_to 'Council Members', council_memberships_path(@council) %></p>
+      <p><%= link_to 'Back to Council Posts', council_path(@council) %></p>
       
       <div class="posted-by">Created by <%= @council.user.name %></div>
-
-      <p class="council-desc"><%= @council.description %></p>
+      <p><%= @council.description %></p>
     
     </div><!-- side-menu -->
 
     <div id="main-content" class="col-sm-9">
-	   
-     <%= render @posts %> 
+	  
+	  <% @council.memberships.each do |m| %>
+	  	<%= m.user.name %>
+	  <% end %>
 
     </div><!-- main-content -->
 

@@ -6,11 +6,15 @@ RSpec.feature "Visit show council", :type => :feature do
 
   scenario "User goes to show council page from the home page", js: true do
     council
+    sign_in user
     visit root_path
-    page.find(".single-post-card").click
-    expect(page).to have_selector('body .modal')
-    page.find('.interested a').click
-    expect(page).to have_selector('#single-post-content p', text: council.description)
+    expect(page).to have_selector('body .modal', visible: false)
+    page.find(".single-council-card").trigger(:click)
+    expect(page).to have_selector('body .modal', visible: false)
+    page.find('.interested a', visible: false)
+    visit council_path(council)
+    puts page.body
+    expect(page).to have_selector('.council-desc', text: council.description)
   end
 
 end
