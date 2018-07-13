@@ -6,7 +6,7 @@
   padding: 10px;
   text-align: left;
   transition: border 0.1s, background 0.5s;
-  .post-text {
+  .council-text {
     overflow: hidden;
   }
   a, a:active, a:hover {
@@ -20,13 +20,13 @@
   }
 }
 .council-text-top {
-  min-height: 53px;
-  max-height: 53px;
+  min-height: 45px;
+  max-height: 45px;
   overflow: hidden;
 }
 .council-text-bottom {
   text-align: right;
-  padding-top: 20px;  
+  padding-top: 15px;  
 }
 
 .council-content {
@@ -40,7 +40,7 @@
 }
 
 .solid-color-mode {
-  .post-text {
+  .council-text {
     padding: 10px;
     background-color: white;
     border-radius: 25px;

@@ -4,7 +4,10 @@
     <div id="side-menu"  class="col-sm-3">
     
       <h3><%= @council.title %></h3>
-      <p><%= link_to 'Council Members', council_memberships_path(@council) %></p>
+      <p>
+        <%= link_to council_memberships_path(@council) do %>
+          <i class="fa fa-user-circle-o" aria-hidden="true"></i> Council Members
+        <% end %>
       
       <div class="posted-by">Created by <%= @council.user.name %></div>
 

@@ -8,7 +8,7 @@
 
 def seed_users
   user_id = 0
-  10.times do 
+  20.times do 
     User.create(
       name: "test#{user_id}",
       email: "test#{user_id}@test.com",
@@ -22,7 +22,7 @@ end
 def seed_councils
 
     council_id = 0
-    5.times do
+    15.times do
       Council.create(
         title: "Council#{council_id}", 
         description: Faker::Lorem.sentences[0], 
@@ -39,7 +39,7 @@ def seed_memberships
     users.each do |user|
         Membership.create(
           user_id: user.id, 
-          council_id: rand(1..4),
+          council_id: rand(1..8),
           active: true
       )
     end
