@@ -2,8 +2,7 @@
 	<div id="top-content">
       <%= render "positions/index/side_menu" %>
     </div><!-- top-content -->	  
-	<% @council.positions.each do |p| %>
-	  	<%= p.title %>
-	<% end %>
-
+	<div id="content-list" class="row" >
+		<%= render @council.positions %>
+	</div>
 </div><!-- main-content -->
