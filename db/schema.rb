@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180710065239) do
+ActiveRecord::Schema.define(version: 20180714005152) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,35 @@ ActiveRecord::Schema.define(version: 20180710065239) do
 
   add_index "memberships", ["council_id"], name: "index_memberships_on_council_id", using: :btree
   add_index "memberships", ["user_id"], name: "index_memberships_on_user_id", using: :btree
+
+  create_table "pos_votes", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "council_id"
+    t.integer  "position_id"
+    t.integer  "vote_id"
+    t.boolean  "active",      default: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  add_index "pos_votes", ["council_id"], name: "index_pos_votes_on_council_id", using: :btree
+  add_index "pos_votes", ["position_id"], name: "index_pos_votes_on_position_id", using: :btree
+  add_index "pos_votes", ["user_id"], name: "index_pos_votes_on_user_id", using: :btree
+  add_index "pos_votes", ["vote_id"], name: "index_pos_votes_on_vote_id", using: :btree
+
+  create_table "positions", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "user_id"
+    t.integer  "council_id"
+    t.boolean  "active",      default: false
+    t.boolean  "appointed",   default: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  add_index "positions", ["council_id"], name: "index_positions_on_council_id", using: :btree
+  add_index "positions", ["user_id"], name: "index_positions_on_user_id", using: :btree
 
   create_table "posts", force: :cascade do |t|
     t.string   "title"

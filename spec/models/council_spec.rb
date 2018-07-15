@@ -12,6 +12,11 @@ RSpec.describe Council, type: :model do
 	      association = described_class.reflect_on_association(:memberships).macro
 	      expect(association).to eq :has_many
 	    end
+
+	    it 'has_many positions' do
+	      association = described_class.reflect_on_association(:positions).macro
+	      expect(association).to eq :has_many
+	    end
     end
 
 end

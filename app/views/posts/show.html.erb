@@ -7,7 +7,10 @@
       <p><%= @post.content %></p>
       
       <div class="posted-by">Posted by <%= @post.user.name %></div>
-      <%= link_to 'Back to Council', council_path(@post.council.id) %>
+      
+      <%= link_to council_path(@post.council) do %>
+        <i class="fa fa-home" aria-hidden="true"></i> Council Home
+      <% end %>
       
     </div>
   </div><!-- row -->

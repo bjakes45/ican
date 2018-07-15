@@ -3,7 +3,10 @@
     <div id="side-menu"  class="col-sm-3">
       
       <h3><%= @council.title %></h3>
-      <p><%= link_to 'Back to Council Posts', council_path(@council) %></p>
+      <p>
+        <%= link_to council_path(@council) do %>
+          <i class="fa fa-home" aria-hidden="true"></i> Council Home
+        <% end %>
       
       <div class="posted-by">Created by <%= @council.user.name %></div>
       <p><%= @council.description %></p>

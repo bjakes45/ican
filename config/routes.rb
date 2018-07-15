@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   
   resources :councils do
     resources :posts
+    resources :positions
+    resources :pos_votes
     resources :memberships
   end
 
