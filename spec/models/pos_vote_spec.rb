@@ -11,11 +11,6 @@ RSpec.describe PosVote, type: :model do
 	    expect(association).to eq :belongs_to
 	end
 
-	it 'belongs_to council' do
-	    association = described_class.reflect_on_association(:council).macro
-	    expect(association).to eq :belongs_to
-	end
-
 	it 'belongs_to vote_id' do
 	    association = described_class.reflect_on_association(:vote_id).macro
 	    expect(association).to eq :belongs_to
