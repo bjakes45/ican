@@ -5,6 +5,9 @@
   #side-menu {
     display: none !important;
   }
+  #top-content {
+    display: unset !important;
+  }
 }
 
 @media screen and (max-width: 1000px) {

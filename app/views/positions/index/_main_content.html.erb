@@ -1,0 +1,9 @@
+<div id="main-content" class="col-sm-9">
+	<div id="top-content">
+      <%= render "positions/index/side_menu" %>
+    </div><!-- top-content -->	  
+	<% @council.positions.each do |p| %>
+	  	<%= p.title %>
+	<% end %>
+
+</div><!-- main-content -->

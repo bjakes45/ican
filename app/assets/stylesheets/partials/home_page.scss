@@ -1,11 +1,35 @@
 #main-content {
   background: white;
-  min-height: 800px;
+  min-height: 600px;
   margin: 0;
   padding: 10px 0 0 0;
 }
 
-#side-menu {
+#top-content {
+  background: $backgroundColor;
+  min-height: 200px;
+  margin: 0 ;
+  padding: 0;
+  display:none
+}
+
+
+#council-list {
+  min-height: 600px;
+  margin: 0 ;
+  padding: 0;
+  display:none
+}
+
+#bottom-content {
+  background: white;
+  min-height: 200px;
+  margin: 0 ;
+  padding: 0;
+  display:none
+}
+
+#side-menu #top-content {
   padding: 0 10px 0 0;
   #links-list {
     margin-top: 20px;

@@ -1,25 +1,12 @@
 <%= render 'posts/modal' %>
 <div class="container">
   <div class="row">
-    <div id="side-menu"  class="col-sm-3">
-    
-      <h3><%= @council.title %></h3>
-      <p>
-        <%= link_to council_memberships_path(@council) do %>
-          <i class="fa fa-address-book" aria-hidden="true"></i> Council Members
-        <% end %>
-      
-      <div class="posted-by">Created by <%= @council.user.name %></div>
 
-      <p class="council-desc"><%= @council.description %></p>
-    
+    <div id="side-menu"  class="col-sm-3">    
+      <%= render "councils/show/side_menu" %>    
     </div><!-- side-menu -->
-
-    <div id="main-content" class="col-sm-9">
-	   
-     <%= render @posts %> 
-
-    </div><!-- main-content -->
-
+  
+    <%= render "councils/show/main_content" %>    
+  
   </div><!-- row -->
 </div><!-- container -->

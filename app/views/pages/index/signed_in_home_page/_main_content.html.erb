@@ -1,5 +1,12 @@
 <div id="main-content" class="col-sm-9">
-	
-	<%= render @councils %>		
-
+	<div id="top-content">
+   		<%= render 'pages/index/signed_in_home_page/side_menu' %>
+	</div><!-- top-content -->	
+	<div class="council-list row">
+		<%= render @councils %>
+	</div><!-- council-list -->
+	<div class="bottom-content infinite-scroll">
+		<%= will_paginate @councils %>		
+	</div>
 </div><!-- main-content -->
+

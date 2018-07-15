@@ -39,7 +39,6 @@ ActiveRecord::Schema.define(version: 20180714005152) do
 
   create_table "pos_votes", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "council_id"
     t.integer  "position_id"
     t.integer  "vote_id"
     t.boolean  "active",      default: false
@@ -47,7 +46,6 @@ ActiveRecord::Schema.define(version: 20180714005152) do
     t.datetime "updated_at",                  null: false
   end
 
-  add_index "pos_votes", ["council_id"], name: "index_pos_votes_on_council_id", using: :btree
   add_index "pos_votes", ["position_id"], name: "index_pos_votes_on_position_id", using: :btree
   add_index "pos_votes", ["user_id"], name: "index_pos_votes_on_user_id", using: :btree
   add_index "pos_votes", ["vote_id"], name: "index_pos_votes_on_vote_id", using: :btree

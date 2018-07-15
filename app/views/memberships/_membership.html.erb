@@ -1,0 +1,12 @@
+<div class="col-sm-4 single-post-card" id=<%= council_membership_path(membership.council.id, membership.id) %>>
+  <div class="card">
+    <div class="card-block">
+      <h4 class="post-text">
+        <%= truncate(membership.user.name, :length => 60) %>
+      </h4>
+      <div class="post-content">
+        <h3>Active: <%= membership.active %></h3> 
+      </div>
+    </div>
+  </div><!-- card -->
+</div><!-- col-sm-4 -->
