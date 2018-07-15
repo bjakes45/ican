@@ -1,0 +1,12 @@
+<div id="main-content" class="col-sm-9">
+	<div id="top-content">
+      <%= render "pages/council_posts/side_menu" %>
+    </div><!-- top-content -->
+	<div id="list-content">
+		<%= render @posts %>
+    </div><!-- list-content -->
+    <div id="bottom-content">
+    	<%= will_paginate @posts %>
+    </div><!-- bottom-content -->
+
+</div><!-- main-content -->

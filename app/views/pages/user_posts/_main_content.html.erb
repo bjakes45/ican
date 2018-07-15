@@ -1,0 +1,12 @@
+<div id="main-content" class="col-sm-9">
+<div id="top-content">
+      <%= render "pages/profile/side_menu" %>
+    </div><!-- top-content -->
+    <div id="list-content">
+    	<% @user.posts.each do |p| %>
+			<%= render p %>
+		<% end %>
+    </div>
+
+
+    </div><!-- main-content -->

@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
+  
   root to: 'pages#index'
+  
   get 'profile', to: 'pages#profile'  
+  get 'council_posts', to: 'pages#council_posts'  
+  get 'user_posts', to: 'pages#user_posts'  
+  
   devise_for :users, :controllers => {:registrations => "registrations"}
   
   devise_scope :user do

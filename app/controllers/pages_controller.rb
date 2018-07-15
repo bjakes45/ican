@@ -10,6 +10,18 @@ class PagesController < ApplicationController
 		@memberships = Membership.all
 	end
 
+	def user_posts
+		@user = current_user
+	end
+	
+	def council_posts
+		@user = current_user
+		@posts_array = []
+		@user.memberships.where(active: true).each do |m|
+	 		@posts_array += m.council.posts
+		end
+		@posts = @posts_array.paginate(page: params[:page], per_page: 12)
+	end
 	private
 
 	def get_councils

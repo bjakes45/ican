@@ -1,18 +1,10 @@
-<%= render 'councils/modal' %>
 <div class="container">
   <div class="row">
     <div id="side-menu"  class="col-sm-3">
+      <%= render "pages/profile/side_menu" %>
     </div><!-- side-menu -->
 
-    <div id="main-content" class="col-sm-9">
-	
-		<% @user.memberships.where(active: true).each do |m| %>
-			<%= render m.council %>
-
-		<% end %>
-
-
-    </div><!-- main-content -->
+    <%= render "pages/profile/main_content" %>
 
   </div><!-- row -->
 </div><!-- container -->
