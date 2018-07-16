@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'profile', to: 'pages#profile'  
   get 'council_posts', to: 'pages#council_posts'  
   get 'user_posts', to: 'pages#user_posts'  
+  get 'deactivate_pos_vote', to: 'pos_votes#deactivate'  
   
   devise_for :users, :controllers => {:registrations => "registrations"}
   
@@ -18,9 +19,10 @@ Rails.application.routes.draw do
   
   resources :councils do
     resources :posts
-    resources :positions
-    resources :pos_votes
     resources :memberships
+    resources :positions do
+      resources :pos_votes
+    end
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

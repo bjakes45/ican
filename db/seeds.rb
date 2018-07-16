@@ -6,6 +6,8 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+#Seeds for development
+#=begin
 def seed_users
   user_id = 0
   40.times do 
@@ -108,14 +110,16 @@ def seed_pos_votes
       members_ids = []
       council.memberships.each do |member|
         members += [member.user]
-        members_ids += [member.user.id]
       end
-      PosVote.create(
-          vote_id: members.sample, 
-          user_id: members_ids.sample, 
-          position_id: position.id,
-          active: true
-        )
+      
+      council.memberships.each do |member|
+        PosVote.create(
+            vote_id: members.sample, 
+            user_id: member.id, 
+            position_id: position.id,
+            active: true
+          )
+        end
     end
   end
 
@@ -127,3 +131,8 @@ seed_memberships
 seed_posts
 seed_positions
 seed_pos_votes
+#=end
+
+#Seeds for production 
+#=begin
+#=end

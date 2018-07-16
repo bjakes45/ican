@@ -1,17 +1,1 @@
-<h3><%= @council.title %></h3>
-<ul class="link-list">
-    <li>
-        <%= link_to council_memberships_path(@council) do %>
-        	<i class="fa fa-address-book" aria-hidden="true"></i> Council Members
-        <% end %>
-    </li>
-    <li>
-        <%= link_to council_positions_path(@council) do %>
-        	<i class="fa fa-user-tie" aria-hidden="true"></i> Council Positions
-        <% end %>
-    </li>
-</ul>      
-
-<p class="council-desc"><%= @council.description %></p>
-
-<div class="posted-by">Created by <%= @council.user.name %></div>
+<%= render check_user_membership ? 'councils/show/side_menu/for_members' : 'councils/show/side_menu/not_for_members' %>

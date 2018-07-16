@@ -1,0 +1,15 @@
+<div class="container" id="sign-up-form">
+  <div class="row">
+    <h1>Already Voted!</h1>
+    <h3>Voting for: <%= @position.title %></h3>
+
+    <div class="col-sm-offset-4 col-sm-4">
+      <h3>Vote Stands for: <%= @user_vote[0].vote_id.name %></h3> 
+
+      
+      <%= link_to 'Deactivate Vote', deactivate_pos_vote_path(pos_vote_id: @user_vote[0].id) %>
+      <%= link_to 'Back', :back %>
+    
+    </div>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<h3><%= @council.title %></h3>
+<ul class="link-list">
+    <li>
+        <%= link_to council_memberships_path(@council) do %>
+        	<i class="fa fa-address-book" aria-hidden="true"></i> Council Members
+        <% end %>
+    </li>
+    <li>
+        <%= link_to council_positions_path(@council) do %>
+        	<i class="fa fa-user-tie" aria-hidden="true"></i> Council Positions
+        <% end %>
+    </li>
+    <li>
+        <%= link_to new_council_post_path(@council) do %>
+            <i class="fa fa-pen" aria-hidden="true"></i> New Post
+        <% end %>
+    </li>
+</ul>      
+
+<p class="council-desc"><%= @council.description %></p>
+
+<div class="posted-by">Created by <%= @council.user.name %></div>
