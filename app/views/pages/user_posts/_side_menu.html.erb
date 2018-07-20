@@ -1,14 +1,14 @@
 <h3>Your Posts</h3>
-<p>All the Posts you have made</p>
-<ul>
-	<li>
+<ul id="links-list">
+    <li>
         <%= link_to profile_path do %>
-        	<i class="fa fa-address-book" aria-hidden="true"></i> Your Councils
+            <i class="fa fa-address-book" aria-hidden="true"></i> Your Councils
         <% end %>
     </li>
     <li>
         <%= link_to council_posts_path do %>
-        	<i class="fa fa-user-tie" aria-hidden="true"></i> Councils Posts
+            <i class="fa fa-user-tie" aria-hidden="true"></i> Councils Posts
         <% end %>
     </li>
 </ul>
+<p>All the Posts you have made</p>

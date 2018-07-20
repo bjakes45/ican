@@ -6,6 +6,7 @@ class CreatePosVotes < ActiveRecord::Migration
       t.integer :vote_id, index: true
 
       t.boolean :active, default: false
+      t.timestamp :active_at
 
       t.timestamps null: false
     end

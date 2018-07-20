@@ -11,7 +11,9 @@
       </h4>
       <div class="council-content">
         <div class="posted-by">Created by <%= council.user.name %></div>
-        <h3><%= council.title %></h3> 
+        <h3><%= council.title %></h3>
+        <h2><%= council.council_category.title %></h2>
+
         <p><%= council.description %></p>
         <%= link_to "I'm interested", council_path(council.id), class: 'interested' %>
       </div>

@@ -5,6 +5,7 @@ class CreateCouncils < ActiveRecord::Migration
       t.text :description
       
       t.belongs_to :user, index: true
+      t.belongs_to :council_category, index: true
 
       t.timestamps null: false
     end

@@ -1,1 +1,4 @@
-<%= render check_user_membership ? 'councils/show/side_menu/for_members' : 'councils/show/side_menu/not_for_members' %>
+<%= render 	check_user_membership ? 
+				check_user_membership_active ? 
+					'councils/show/side_menu/for_members': 'councils/show/side_menu/for_requested' 
+				: 'councils/show/side_menu/not_for_members' %>

@@ -2,7 +2,10 @@ class PagesController < ApplicationController
 	require 'will_paginate/array'
 	before_action :authenticate_user!, except: :index
 	def index
-		@councils = get_councils.paginate(page: params[:page], per_page: 16)
+		get_councils
+		@councils = @councils.paginate(page: params[:page], per_page: 16)
+		@categories = CouncilCategory.all
+		
 	end
 
 	def profile
@@ -25,6 +28,24 @@ class PagesController < ApplicationController
 	private
 
 	def get_councils
-		Council.joins(:memberships).group(:id).order("COUNT(memberships.id) DESC") + Council.includes(:memberships).where(memberships: { id: nil })
+		if !params[:category].blank?
+			@category = CouncilCategory.find(params[:category]) 
+			if !params[:search].blank?
+				@councils_ordered = @category.councils.search(params[:search]).joins(:memberships).where("memberships.active = true").group(:id).order("COUNT(memberships.id) DESC")
+				@councils_empty = @category.councils.search(params[:search]).includes(:memberships).where(memberships: { id: nil })
+			else
+				@councils_ordered = @category.councils.joins(:memberships).where("memberships.active = true").group(:id).order("COUNT(memberships.id) DESC") 
+				@councils_empty = @category.councils.search(params[:search]).includes(:memberships).where(memberships: { id: nil })
+			end 
+		else
+			if !params[:search].blank?
+				@councils_ordered = Council.search(params[:search]).joins(:memberships).where("memberships.active = true").group(:id).order("COUNT(memberships.id) DESC") 
+				@councils_empty = Council.search(params[:search]).includes(:memberships).where(memberships: { id: nil })
+			else
+				@councils_ordered = Council.joins(:memberships).where("memberships.active = true").group(:id).order("COUNT(memberships.id) DESC")
+				@councils_empty = Council.includes(:memberships).where(memberships: { id: nil })
+			end
+		end
+		@councils = @councils_ordered + @councils_empty
 	end
 end

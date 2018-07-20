@@ -1,9 +1,27 @@
 <h3>Interactivist Community Action Network</h3>
 
 <p>
-	The Community Action Network consists of Councils that practice Interactive Democracy to come to decisions.
+	<strong>ICAN</strong> consists of Action Councils that use Interactive Democracy for collective decision-making.
 	</br></br>
-	Each of these councils allows their members to organize to improve their community.
+	Each Action Council allows their members to organize with the aim of improving their community.
 	</br></br>
-	Request to join one that you find interesting.
+	Request to join an Action Council that you find interesting.
+	</br></br>
+	Or search for a specific one below:
 </p> 
+<%= form_tag(request.fullpath, method: "get", id: "search-form") do %>
+	
+	<%= select_tag 		:category,  
+						options_from_collection_for_select(@categories, "id", "title", params[:category]),
+						include_blank: "All Categories", 
+						class: 'form-control' %>
+	
+	<%= text_field_tag 	:search,
+	 					params["search"], 
+	 					placeholder: "Search Councils", 
+	 					class: 'form-control' %>
+    
+    <%= submit_tag 		"Search",
+	 					class: 'form-control' %>
+
+<% end %>

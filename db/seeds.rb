@@ -21,16 +21,34 @@ def seed_users
   end
 end
 
+def seed_council_categories
+
+    council_category_id = 0
+    6.times do
+      CouncilCategory.create(
+        title: "CouncilCategory#{council_category_id}", 
+        description: Faker::Lorem.sentences[0], 
+        user_id: rand(1..40), 
+      )
+      council_category_id = council_category_id + 1
+    end
+
+end
+
 def seed_councils
+    council_categories = CouncilCategory.all
 
     council_id = 0
-    25.times do
-      Council.create(
-        title: "Council#{council_id}", 
-        description: Faker::Lorem.sentences[0], 
-        user_id: rand(1..9), 
-      )
-      council_id = council_id + 1
+    council_categories.each do |cat|   
+      5.times do
+        Council.create(
+          title: "Council#{council_id}", 
+          description: Faker::Lorem.sentences[0], 
+          user_id: rand(1..9), 
+          council_category_id: cat.id, 
+        )
+        council_id = council_id + 1
+      end
     end
 
 end
@@ -44,13 +62,13 @@ def seed_memberships
     council_ids += [council.id]
   end
 
-    users.each do |user|
-        Membership.create(
-          user_id: user.id, 
-          council_id: council_ids.sample,
-          active: true
-      )
-    end
+  users.each do |user|
+      Membership.create(
+        user_id: user.id, 
+        council_id: council_ids.sample,
+        active: true
+    )
+  end
 
 end
 
@@ -126,6 +144,7 @@ def seed_pos_votes
 end
 
 seed_users
+seed_council_categories
 seed_councils
 seed_memberships
 seed_posts

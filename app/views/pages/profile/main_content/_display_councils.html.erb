@@ -1,0 +1,12 @@
+<div class="row council-lists">
+<p>All the Councils you have Membership in</p>
+<% @user.memberships.where(active: true).each do |m| %>	
+	<%= render m.council %>
+<% end %>
+</div>
+<div class="row council-lists">
+<p>Councils with pending Membership requests</p>
+<% @user.memberships.where(active: false).each do |m| %>	
+	<%= render m.council %>
+<% end %>
+</div>

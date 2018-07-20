@@ -3,9 +3,7 @@
       <%= render "pages/profile/side_menu" %>
     </div><!-- top-content -->
     <div id="list-content">
-    	<% @user.memberships.where(active: true).each do |m| %>
-    		<%= render m.council %>
-    	<% end %>
+    	<%= render check_if_user_councils_empty %>
     </div>
 
 

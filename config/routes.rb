@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'council_posts', to: 'pages#council_posts'  
   get 'user_posts', to: 'pages#user_posts'  
   get 'deactivate_pos_vote', to: 'pos_votes#deactivate'  
+  get 'deactivate_member_req', to: 'memberships#deactivate'  
   
   devise_for :users, :controllers => {:registrations => "registrations"}
   

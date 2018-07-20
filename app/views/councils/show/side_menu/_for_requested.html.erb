@@ -1,8 +1,8 @@
 <h3><%= @council.title %></h3>
 <ul id="links-list">
     <li>
-        <%= link_to new_council_membership_path(@council) do %>
-        	<i class="fa fa-feather-alt" aria-hidden="true"></i> Request Membership
+        <%= link_to deactivate_member_req_path(membership_id: current_user.memberships.where(council_id: @council.id)[0]) do %>
+        	<i class="fa fa-feather-alt" aria-hidden="true"></i> Deactivate Request
         <% end %>
     </li>
 </ul>      

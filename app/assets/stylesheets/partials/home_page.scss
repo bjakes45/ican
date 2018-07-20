@@ -13,7 +13,6 @@
   display:none
 }
 
-
 #content-list {
   margin: 0 ;
   padding: 0;
@@ -25,7 +24,7 @@
   padding: 0;
 }
 
-#side-menu #top-content {
+#side-menu, #top-content {
   padding: 0 10px 0 0;
   #links-list {
     margin-top: 20px;
