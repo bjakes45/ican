@@ -17,7 +17,7 @@ class MembershipsController < ApplicationController
 	def show
 		@membership = Membership.find(params[:id])
 		
-		if user_signed_in?
+		if check_user_membership
   			@message_has_been_sent = conversation_exist?
 		end
 
@@ -82,8 +82,16 @@ class MembershipsController < ApplicationController
 		@pending_members = @council.memberships.where(active:false, deactivate:false)
 	end
 
-	def conversation_exist?
-	  Private::Conversation.between_users(current_user.id, @post.user.id).present?
+	def conversation_exist?  
+		if Private::Conversation.where(sender_id: current_user.id, recipient_id: @membership.user.id).present?
+			return true
+		else
+			if Private::Conversation.where(sender_id: @membership.user.id, recipient_id: current_user.id).present?
+				return true
+			else
+				return false
+			end
+		end
 	end
 
 end

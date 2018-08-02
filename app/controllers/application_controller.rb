@@ -33,6 +33,14 @@ class ApplicationController < ActionController::Base
 		end
 	end
 
+	def check_membership_request
+		if current_user.memberships.where(council_id: @council.id, active: false, deactivate:false).empty?
+			return false
+		else
+			return true
+		end
+	end
+
 	def check_if_member
 		if !check_user_membership
 			redirect_to council_path(@council)
