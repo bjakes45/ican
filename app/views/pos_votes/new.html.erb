@@ -1,1 +1,6 @@
-<%= render check_if_user_has_voted %>
+<%= render check_if_user_has_active_vote ? 
+				check_if_user_has_voted ? 
+		 			'pos_votes/new/not_yet_voted' : 
+					'pos_votes/new/vote_pending' : 
+				'pos_votes/new/already_voted'  
+				%>

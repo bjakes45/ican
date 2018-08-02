@@ -20,6 +20,16 @@
   }
 }
 
+.post-text-top {
+  min-height: 45px;
+  max-height: 45px;
+  overflow: hidden;
+}
+.post-text-bottom {
+  text-align: right;
+  padding-top: 15px;  
+}
+
 .post-content {
   display: none;
 }

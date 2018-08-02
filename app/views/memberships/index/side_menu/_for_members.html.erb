@@ -1,0 +1,15 @@
+<h3><%= @council.title %></h3>
+<h3>Current Members</h3>
+<ul id="links-list">
+	<li>
+	<%= link_to council_pending_members_path(@council) do %>
+        <i class="fa fa-user-plus" aria-hidden="true"></i>Pending Members
+		<%= render pending_members_badge %>
+    <% end %>
+	</li>
+	<li>
+    <%= link_to council_path(@council) do %>
+        <i class="fa fa-home" aria-hidden="true"></i>Discussion
+    <% end %>
+	</li>
+</ul>

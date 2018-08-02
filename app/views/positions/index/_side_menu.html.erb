@@ -1,8 +1,19 @@
 <h3><%= @council.title %></h3>
+<h3>Positions</h3>
+
 <ul id="links-list">
+    <% if !@executive_incumbent.blank? %>
+	   <% if @executive_incumbent.user == current_user %> 
+    		<li>
+    		    <%= link_to new_council_position_path(@council) do %>
+    		        <i class="fa fa-crown" aria-hidden="true"></i> New Position
+    		    <% end %>
+        	</li>
+        <% end %>
+    <% end %>
     <li>
     <%= link_to council_path(@council) do %>
-        <i class="fa fa-home" aria-hidden="true"></i> Council Home
+        <i class="fa fa-home" aria-hidden="true"></i> Discussion
     <% end %>
     </li>
 </ul> 

@@ -1,0 +1,2 @@
+class CouncilCategoriesController < ApplicationController
+end

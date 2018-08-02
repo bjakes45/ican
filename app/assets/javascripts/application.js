@@ -12,6 +12,9 @@
 //
 //= require jquery
 //= require bootstrap-sprockets
+//= require Chart.bundle
+//= require chartkick
+//= require chosen-jquery
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .

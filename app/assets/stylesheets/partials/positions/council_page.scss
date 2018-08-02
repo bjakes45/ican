@@ -20,6 +20,16 @@
   }
 }
 
+.position-text-top {
+  min-height: 45px;
+  max-height: 45px;
+  overflow: hidden;
+}
+.position-text-bottom {
+  text-align: right;
+  padding-top: 15px;  
+}
+
 .position-content {
   display: none;
 }

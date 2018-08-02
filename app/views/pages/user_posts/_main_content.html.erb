@@ -4,7 +4,9 @@
     </div><!-- top-content -->
     <div id="list-content">
     	<% @user.posts.each do |p| %>
-			<%= render p %>
+    		<% if p.policies.where(deactivate: false).count == 0 %>
+				<%= render p %>
+			<% end %>
 		<% end %>
     </div>
 

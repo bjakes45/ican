@@ -6,8 +6,10 @@
         <% end %>
     </li>
     <li>
-        <%= link_to council_posts_path do %>
-        	<i class="fa fa-user-tie" aria-hidden="true"></i> Councils Posts
+        <%= link_to user_council_posts_path do %>
+        	<i class="fa fa-user-tie" aria-hidden="true"></i> Councils' Posts
         <% end %>
     </li>
+
+    <%=current_user.city %>
 </ul>

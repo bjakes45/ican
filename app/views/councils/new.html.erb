@@ -1,0 +1,39 @@
+<div class="container" id="sign-up-form">
+  <div class="row">
+    <h1>Create a new Council</h1>
+    
+    <h3></h3>
+
+    <div class="col-sm-offset-4 col-sm-4">
+      <h3></h3> 
+
+      <%= bootstrap_form_for(@council, 
+                             :url => councils_path(@council)) do |f| %>
+
+        <%= f.text_field 	:title,
+				         	placeholder: 'Name your Council', 
+                	      	class: 'form-control',
+                	      	required: 'true' %>
+        
+        <%= f.text_area 	:description,
+				        	placeholder: "Describe your Council's Purpose", 
+                	      	class: 'form-control',
+                	      	required: 'true' %>
+		
+		    <%= f.select  		:council_category,
+                      		options_from_collection_for_select(@council_categories, "id", "title", params[:council_categories]),
+                	    	class: 'form-control',
+                	      	required: 'true' %>
+        <p>Join Council upon Creation? <%= check_box_tag :join %></p>
+
+        <%= f.submit 'Create Council', class: 'btn button-standard form-control' %>
+      
+      <% end %>
+
+      <%= link_to 'Back', root_path %>
+
+      <% @text %>
+    
+    </div>
+  </div>
+</div>

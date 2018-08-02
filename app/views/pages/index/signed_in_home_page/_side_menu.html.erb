@@ -7,21 +7,28 @@
 	</br></br>
 	Request to join an Action Council that you find interesting.
 	</br></br>
-	Or search for a specific one below:
-</p> 
-<%= form_tag(request.fullpath, method: "get", id: "search-form") do %>
-	
-	<%= select_tag 		:category,  
-						options_from_collection_for_select(@categories, "id", "title", params[:category]),
-						include_blank: "All Categories", 
-						class: 'form-control' %>
-	
-	<%= text_field_tag 	:search,
-	 					params["search"], 
-	 					placeholder: "Search Councils", 
-	 					class: 'form-control' %>
-    
-    <%= submit_tag 		"Search",
-	 					class: 'form-control' %>
+	Search for a specific council below:
+</p>
 
-<% end %>
+<div id='search-form' >
+	<%= form_tag(request.fullpath, method: "get", id: "search-form") do %>
+	
+		<%= select_tag 		:category,  
+							options_from_collection_for_select(@categories, "id", "title", params[:category]),
+							include_blank: "All Categories", 
+							class: 'form-control' %>
+			
+		<%= text_field_tag 	:search,
+		 					params["search"], 
+		 					placeholder: "Search Councils", 
+		 					class: 'form-control' %>
+		    
+	    <%= submit_tag 		"Search",
+		 					class: 'form-control' %>
+
+	<% end %>
+	<br />
+	<p>Or you can make a
+	<%= link_to "New Council", new_council_path, type: "Button", class: "btn btn-primary" %></p>
+</div>
+

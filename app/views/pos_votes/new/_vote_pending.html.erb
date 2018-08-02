@@ -1,0 +1,23 @@
+<div class="container" id="sign-up-form">
+  <div class="row">
+    <h1>Vote Pending!</h1>
+    <h3>Voting for: <%= @position.title %></h3>
+
+    <div class="col-sm-offset-3 col-sm-6">
+      <h3>You have offered a Vote to: <%= @user_vote[0].vote_id.name %></h3>
+      <p>The vote must be accepted before it will count.</p> 
+      <p>To change your vote you must deactivate the one that is pending.</p> 
+
+      
+      <%= link_to   'Deactivate Vote', 
+              deactivate_pos_vote_path(
+                pos_vote_id: @user_vote[0].id, 
+                vote_id: params[:vote_id]),
+              :type => "button",
+              :class => "btn btn-danger"
+              %>
+      <%= link_to 'Back', council_position_path(@council, @position) %>
+    
+    </div>
+  </div>
+</div>

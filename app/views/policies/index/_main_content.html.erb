@@ -1,0 +1,41 @@
+<div id="main-content" class="col-sm-9">
+	<div id="top-content">
+      <%= render "policies/index/side_menu" %>
+    </div><!-- top-content -->	  
+	<div id="content-list" class="row" >
+		<div>
+			<% @display_heading = false %>
+			<% @council.posts.each do |p| %>
+				<% if p.policies.where(active: true, deactivate: false).count ==1 %>
+					<% @display_heading = true %>
+				<% end %>
+			<% end %>
+			<% if @display_heading %>
+				<h1>Active Policies</h1>
+			<% end %>
+			<% @council.posts.each do |p| %>
+				<% if p.policies.where(active: true, deactivate: false).count ==1 %>
+					<%= render p %>
+				<% end %>
+			<% end %>
+		</div>
+		<div>
+			<% @display_heading = false %>
+			<% @council.posts.each do |p| %>
+				<% if p.policies.where(active: false, deactivate: false).count ==1 %>
+					<% @display_heading = true %>
+				<% end %>
+			<% end %>
+			<% if @display_heading %>
+				<h1>Pending Policies</h1>
+			<% end %>
+			<% @council.posts.each do |p| %>
+				<% if p.policies.where(active: false, deactivate: false).count ==1 %>
+					<%= render p %>
+					<% #render p.policies.where(active: false, deactivate: false).first %>
+				<% end %>
+			<% end %>
+		</div>
+	</div>
+	
+</div><!-- main-content -->

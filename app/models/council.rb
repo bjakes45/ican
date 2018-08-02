@@ -2,6 +2,7 @@ class Council < ActiveRecord::Base
 
 	belongs_to :user
 	belongs_to :council_category
+	has_many :council_settings
 	has_many :memberships
 	has_many :posts
 	has_many :positions

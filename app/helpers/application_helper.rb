@@ -4,7 +4,7 @@ module ApplicationHelper
   	include NavigationHelper
 
 	def check_user_membership
-		if current_user.memberships.where(council_id: @council.id).empty?
+		if current_user.memberships.where(council_id: @council.id, deactivate:false).empty?
 			return false
 		else
 			return true
@@ -13,7 +13,7 @@ module ApplicationHelper
 
 
 	def check_user_membership_active
-		if current_user.memberships.where(council_id: @council.id, active: true).empty?
+		if current_user.memberships.where(council_id: @council.id, active: true, deactivate:false).empty?
 			return false
 		else
 			return true

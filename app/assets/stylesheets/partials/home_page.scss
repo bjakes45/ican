@@ -3,27 +3,26 @@
   min-height: 600px;
   margin: 0;
   padding: 10px 0 0 0;
-}
 
-#top-content {
-  background: $backgroundColor;
-  min-height: 200px;
-  margin: 0 ;
-  padding: 0;
-  display:none
-}
+  #top-content {
+    background: white;
+    min-height: 200px;
+    text-align: center;
+    display:none
+  }
 
-#content-list {
-  margin: 0 ;
-  padding: 0;
-}
+  #content-list {
+    margin: 0 ;
+    padding: 0;
+  }
 
-#bottom-content {
-  background: white;
-  margin: 0 ;
-  padding: 0;
-}
+  #bottom-content {
+    background: white;
+    margin: 0 ;
+    padding: 0;
+  }
 
+}
 #side-menu, #top-content {
   padding: 0 10px 0 0;
   #links-list {
@@ -52,4 +51,7 @@
       color: white;
     }
   }
+}
+.infinite-scroll {
+  display: none;
 }

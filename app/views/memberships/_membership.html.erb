@@ -1,11 +1,14 @@
-<div class="col-sm-4 single-post-card" id=<%= council_membership_path(membership.council.id, membership.id) %>>
+<div class="col-sm-4 single-member-card" id=<%= council_membership_path(membership.council.id, membership.id) %>>
   <div class="card">
     <div class="card-block">
-      <h4 class="post-text">
+      <h4 class="member-text">
         <%= truncate(membership.user.name, :length => 60) %>
       </h4>
-      <div class="post-content">
-        <h3>Active: <%= membership.active %></h3> 
+      <div class="member-content">
+        <div class="posted-by">Created by <%= membership.user.name %></div>
+        <h3> </h3> 
+        <p><%= membership.council.title %></p>
+        <%= link_to "Member Page", council_membership_path(membership.council, membership), class: 'interested' %>
       </div>
     </div>
   </div><!-- card -->

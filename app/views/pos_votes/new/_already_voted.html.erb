@@ -4,12 +4,19 @@
     <h3>Voting for: <%= @position.title %></h3>
 
     <div class="col-sm-offset-4 col-sm-4">
-      <h3>Vote Stands for: <%= @user_vote[0].vote_id.name %></h3> 
+      <h3>Vote Stands for: <%= @user_vote_active[0].vote_id.name %></h3> 
 
       
-      <%= link_to 'Deactivate Vote', deactivate_pos_vote_path(pos_vote_id: @user_vote[0].id) %>
-      <%= link_to 'Back', :back %>
-    
+      <%= link_to 	'Deactivate Vote', 
+      				deactivate_pos_vote_path(
+      					pos_vote_id: @user_vote_active[0].id, 
+      					vote_id: params[:vote_id]),
+      				:type => "button",
+      				:class => "btn btn-danger"
+      				%>
+      <%= link_to(council_position_path(@council, @position), :type => 'button', :class =>'btn btn-dark') do %>
+        <i class="fa fa-user-tie" aria-hidden="true"></i> Position Page
+      <% end %>
     </div>
   </div>
 </div>

@@ -2,7 +2,27 @@
   <div class="card">
     <div class="card-block">
       <h4 class="position-text">
+        <div class="position-text-top">
         <%= truncate(position.title, :length => 60) %>
+        </div>
+        <div class="position-text-bottom">
+          <% if position.council.positions.order('created_at ASC').first == position %>
+            <i class="fa fa-crown" aria-hidden="true"></i>
+          <% end %>
+          <% if position.council.positions.order('created_at ASC')[1] == position %>
+            <i class="fa fa-gavel" aria-hidden="true"></i>
+          <% end %>
+          <% if position.council.positions.order('created_at ASC')[2] == position %>
+            <i class="fa fa-bullhorn" aria-hidden="true"></i>
+          <% end %>
+          <% if position.council.positions.order('created_at ASC')[3] == position %>
+            <i class="fa fa-piggy-bank" aria-hidden="true"></i>
+          <% end %>
+          Incumbent: 
+          <% incumbent = position.incumbents.where(active: true).first %>
+          <% if !incumbent.blank? %>
+            <%= incumbent.user.name %>
+          <% end %>
       </h4>
       <div class="position-content">
         <div class="posted-by">Created by <%= position.user.name %></div>

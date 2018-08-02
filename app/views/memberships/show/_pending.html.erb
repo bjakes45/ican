@@ -1,0 +1,50 @@
+<div id="single-member-content" class="container">
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+      
+      <h3><%= @membership.user.name %></h3>
+      
+      <p>Membership pending</p>
+      
+      <div class="posted-by"></div>
+      
+      
+    </div>
+  </div><!-- row -->
+  <div class='row'>
+    <div class='col-sm-offset-1 col-sm-5'>
+      All votes for this Member:
+        <%= bar_chart @membership.memb_votes.where(deactivate: false).group(:vote).count %>
+    </div>
+    <div class='col-sm-5 col-smoffset-1'>
+      <%= render @membership.user == current_user ? 
+        'memberships/show/pending/self_pending' : 'memberships/show/pending/for_members' %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+      <%= @memb_approve %>
+      <p><strong>Approve:(<%= @appr_rate %>%)</strong>
+        
+        <% @approve.each do |v| %>
+          <%= link_to v.user.name, council_membership_path(@council, @council.memberships.where(user_id: v.user.id, active:true, deactivate:false).first) %>
+        <% end %> 
+      </p>
+      <p><strong>Reject:(<%= (@reject.count.to_f / (@total_members.to_f - @abstain.count.to_f))*100 %>%)</strong>
+        <% @reject.each do |v| %>
+          <%= link_to v.user.name, council_membership_path(@council, @council.memberships.where(user_id: v.user.id, active:true, deactivate:false).first) %>
+        <% end %> 
+      </p>
+      <p><strong>Abstain:</strong>
+        <% @abstain.each do |v| %>
+          <%= link_to v.user.name, council_membership_path(@council, @council.memberships.where(user_id: v.user.id, active:true, deactivate:false).first) %>
+        <% end %> 
+      </p>
+      <p><strong>Delay:</strong>
+        <% @delay.each do |v| %>
+          <%= link_to v.user.name, council_membership_path(@council, @council.memberships.where(user_id: v.user.id, active:true, deactivate:false).first) %>
+        <% end %> 
+      </p>
+    </div>
+  </div>
+</div>

@@ -10,21 +10,74 @@
                              :as => resource_name, 
                              :url => registration_path(resource_name)) do |f| %>
 
-        <%= f.text_field :name, 
-                   placeholder: 'username (will be shown publicly)', 
-                   class: 'form-control' %>
-        <%= f.text_field :email, 
-                   placeholder: 'email', 
-                   class: 'form-control' %>
-        <%= f.password_field :password, 
-                             placeholder: 'password', 
-                             class: 'form-control' %>
-        <%= f.password_field :password_confirmation, 
-                             placeholder: 'password confirmation', 
-                             class: 'form-control' %>
-        <%= f.submit 'Sign up', class: 'btn sign-up-button' %>
+        <%= f.text_field      :name, 
+                              placeholder: 'username (will be shown publicly)', 
+                              autocomplete: 'username', 
+                              class: 'form-control' %>
+          
+        <%= f.select          :country, 
+                              CS.countries.collect { |c| [ c[1], c[0] ] },
+                              autocomplete: 'country',
+                              class: 'form-control' %>
+
+        <%= f.select          :state, 
+                              "",
+                              autocomplete: 'state',
+                              class: 'form-control' %>
+
+        <%= f.select          :city, 
+                              "",
+                              autocomplete: 'city',
+                              class: 'form-control' %>
+
+        <%= f.text_field      :email, 
+                              placeholder: 'email', 
+                              autocomplete: 'email', 
+                              class: 'form-control' %>
+
+        <%= f.password_field  :password, 
+                              placeholder: 'password', 
+                              autocomplete: 'password', 
+                              class: 'form-control' %>
+
+        <%= f.password_field  :password_confirmation, 
+                              placeholder: 'password confirmation', 
+                              autocomplete: 'password confirmation', 
+                              class: 'form-control' %>
+        
+        <%= f.submit          'Sign up', 
+                              class: 'btn sign-up-button' %>
       <% end %>
-    
+
     </div>
   </div>
 </div>
+
+<script>
+$('#user_country').change(function () {
+  var input_country = $(this);
+  var input_state = $('#user_state')
+  console.log(input_country)
+  $.getJSON('/states/' + $(this).val(), function (data) {
+    input_state.empty();
+    $.each(data, function (i, ele) {
+      var opt = '<option value='+ i +'>' + ele + '</option>';
+      input_state.append(opt);
+    });
+  });
+});
+
+$('#user_state').change(function () {
+  var input_state = $(this);
+  var input_country = $('#user_country')
+  var input_city = $('#user_city')
+  console.log(input_country.val())
+  $.getJSON('/states/' + input_country.val() + '/cities/' + $(this).val(), function (data) {
+    input_city.empty();
+    $.each(data, function (i, ele) {
+      var opt = '<option value='+ ele +'>' + ele + '</option>';
+      input_city.append(opt);
+    });
+  });
+});
+</script>

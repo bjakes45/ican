@@ -80,19 +80,39 @@ def seed_posts
     council.memberships.each do |member|
       members_ids += [member.user.id]
     end
-    5.times do
-      Post.create(
-        title: Faker::Lorem.sentences[0], 
-        content: Faker::Lorem.sentences[0], 
-        user_id: members_ids.sample, 
-        council_id: council.id,
-        closed: false,
-        motion: false
-      )
+    if members_ids.length > 0
+      5.times do
+        Post.create(
+          title: Faker::Lorem.sentences[0], 
+          content: Faker::Lorem.sentences[0], 
+          user_id: members_ids.sample, 
+          council_id: council.id,
+          closed: [true, false].sample,
+          motion: [true, false].sample
+        )
+      end
     end
    end
 
 end
+
+def seed_mot_votes
+  councils = Council.all
+
+  councils.each do |council|
+    council.posts.where(motion:true).each do |post|      
+      council.memberships.each do |member|
+        MotVote.create(
+          vote: ['Approve', 'Reject', 'Delay', 'Abstain' ].sample,
+          user_id: member.id, 
+          post_id: post.id
+        )
+      end
+    end
+  end
+
+end
+
 
 def seed_positions
   councils = Council.all
@@ -104,16 +124,18 @@ def seed_positions
     council.memberships.each do |member|
       members_ids += [member.user.id]
     end
-    5.times do
-      Position.create(
-        title: "Position#{position_id}", 
-        description: Faker::Lorem.sentences[0], 
-        user_id: members_ids.sample, 
-        council_id: council.id,
-        active: true,
-        appointed: false
-      )
-      position_id = position_id + 1
+    if members_ids.length > 0
+      5.times do
+        Position.create(
+          title: "Position#{position_id}", 
+          description: Faker::Lorem.sentences[0], 
+          user_id: members_ids.sample, 
+          council_id: council.id,
+          active: true,
+          appointed: false
+        )
+        position_id = position_id + 1
+      end
     end
   end
 
@@ -148,6 +170,7 @@ seed_council_categories
 seed_councils
 seed_memberships
 seed_posts
+seed_mot_votes
 seed_positions
 seed_pos_votes
 #=end

@@ -1,10 +1,16 @@
 class PagesController < ApplicationController
 	require 'will_paginate/array'
 	before_action :authenticate_user!, except: :index
+	
 	def index
 		get_councils
-		@councils = @councils.paginate(page: params[:page], per_page: 16)
+		@councils = @councils.paginate(page: params[:page], per_page: 12)
 		@categories = CouncilCategory.all
+
+		respond_to do |format|
+		  format.html
+		  format.js { render partial: 'councils/councils_pagination_page' }
+		end
 		
 	end
 
@@ -21,7 +27,11 @@ class PagesController < ApplicationController
 		@user = current_user
 		@posts_array = []
 		@user.memberships.where(active: true).each do |m|
-	 		@posts_array += m.council.posts
+	 		m.council.posts.where(deactivate: false).each do |p|
+	 			if p.policies.where(deactivate:false).count == 0
+	 				@posts_array += [p]
+				end
+			end
 		end
 		@posts = @posts_array.paginate(page: params[:page], per_page: 12)
 	end

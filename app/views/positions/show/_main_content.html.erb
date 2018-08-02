@@ -3,6 +3,16 @@
       <%= render "positions/index/side_menu" %>
     </div><!-- top-content -->	  
 	<div id="content-list">
-      	<%= render 'pos_votes/member_pos_vote' %>
+		<div class='row'>
+			<div class='col-sm-4'>
+				<%= render incumbent_info %>
+				
+
+			</div>
+			<div class='col-sm-8'>
+				<%= bar_chart @members_data %>
+			</div>
+		</div>      	
+		<%= render 'pos_votes/member_pos_vote' %>
 	</div>
 </div><!-- main-content -->

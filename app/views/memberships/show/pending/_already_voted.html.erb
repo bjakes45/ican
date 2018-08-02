@@ -1,0 +1,6 @@
+<div>
+	<h3>You've already voted on this membership</h3>
+	<h3>Your Vote: <%= @memb_vote.vote %></h3>
+	<p>To change your vote you must deactivate the one that already exists first</p>
+	<h3><%= link_to 'Deactivate Vote', deactivate_memb_vote_path(memb_vote_id: @memb_vote.id), :type => "button", :class => 'btn btn-danger' %></h3>
+</div>

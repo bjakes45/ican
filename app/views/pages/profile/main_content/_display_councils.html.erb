@@ -1,12 +1,15 @@
 <div class="row council-lists">
 <p>All the Councils you have Membership in</p>
-<% @user.memberships.where(active: true).each do |m| %>	
+<% @user.memberships.where(active: true, deactivate:false).each do |m| %>	
 	<%= render m.council %>
 <% end %>
 </div>
 <div class="row council-lists">
-<p>Councils with pending Membership requests</p>
-<% @user.memberships.where(active: false).each do |m| %>	
-	<%= render m.council %>
+<% @membs = @user.memberships.where(active: false, deactivate:false) %>	
+<% if @membs.count > 0 %>	
+	<p>Councils with pending Membership requests</p>
+	<% @membs.each do |m| %>	
+		<%= render m.council %>
+	<% end %>
 <% end %>
 </div>

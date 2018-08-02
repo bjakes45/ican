@@ -5,6 +5,11 @@
         	<i class="fa fa-feather-alt" aria-hidden="true"></i> Deactivate Request
         <% end %>
     </li>
+    <li>
+        <%= link_to council_memberships_path(@council) do %>
+        	<i class="fa fa-address-book" aria-hidden="true"></i> Members
+        <% end %>
+    </li>
 </ul>      
 
 <p class="council-desc"><%= @council.description %></p>

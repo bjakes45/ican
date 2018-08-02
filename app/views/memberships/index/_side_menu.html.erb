@@ -1,8 +1,4 @@
-<h3><%= @council.title %></h3>
-<ul id="links-list">
-	<li>
-    <%= link_to council_path(@council) do %>
-        <i class="fa fa-home" aria-hidden="true"></i> Council Home
-    <% end %>
-	</li>
-</ul>
+<%= render 	check_user_membership ? 
+				check_user_membership_active ? 
+					'memberships/index/side_menu/for_members': 'memberships/index/side_menu/for_requested' 
+				: 'memberships/index/side_menu/not_for_members' %>

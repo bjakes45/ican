@@ -6,6 +6,17 @@
         <%= truncate(council.title, :length => 60) %>
         </div>
         <div class="council-text-bottom">
+          <% @executive_position = council.positions.order('created_at ASC').first %>
+          <% if !@executive_position.blank? %> 
+            <% @executive_incumbent = @executive_position.incumbents.where(active: true).first %>
+          <% else %>
+            <% @executive_incumbent = "" %>
+          <% end %>
+          <%if !@executive_incumbent.blank? %>
+            <%if @executive_incumbent.user == current_user %>
+              <i class="fa fa-crown" aria-hidden="true"></i>
+            <% end %>
+          <% end %>
           Members: <%= council.memberships.where(active: true).length %>
         </div>
       </h4>
@@ -15,7 +26,15 @@
         <h2><%= council.council_category.title %></h2>
 
         <p><%= council.description %></p>
-        <%= link_to "I'm interested", council_path(council.id), class: 'interested' %>
+        <% if user_signed_in? %>
+          <% if council.memberships.where(user_id: current_user.id).empty? %>
+            <%= link_to "I'm interested", council_path(council.id), class: 'interested' %>
+          <% else %>
+            <%= link_to "View Council", council_path(council.id), class: 'interested' %>
+          <% end %>
+        <% else %>
+          <%= link_to "I'm interested", council_path(council.id), class: 'interested' %>
+        <% end %>
       </div>
     </div>
   </div><!-- card -->

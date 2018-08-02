@@ -15,6 +15,9 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+// Chosen
+@import "chosen";
+
 // Variables
 @import "base/variables";
 
@@ -25,9 +28,11 @@
 @import "partials/*";
 @import "partials/layout/*";
 @import "partials/councils/*";
+@import "partials/memberships/*";
 @import "partials/posts/*";
 @import "partials/positions/*";
 @import "partials/pos_votes/*";
 
 // Media queries for a responsive design
 @import "responsive/*";
+

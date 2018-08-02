@@ -1,0 +1,5 @@
+<%= render !@membership.active? ?
+	'memberships/show/pending' :
+	check_if_member_is_current_user ? 
+		'memberships/show/dashboard' : 
+		'memberships/show/member_page' %>

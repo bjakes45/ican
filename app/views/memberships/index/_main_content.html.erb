@@ -4,7 +4,8 @@
 		<%= render "memberships/index/side_menu" %>
 	</div><!-- top-content -->
 	<div id="content-list" class="row" >
-		<%= render @council.memberships %>
+		<%= render @council.memberships.where(user_id: current_user.id, active: true, deactivate: false) %>
+		<%= render @council.memberships.where(active: true, deactivate: false).where.not(user_id: current_user.id) %>
 	</div>
 	
 </div><!-- main-content -->

@@ -1,0 +1,138 @@
+<div class="container" id="sign-up-form">
+  <div class="row">
+    <h1>Update Council Settings</h1>
+    
+    <h3></h3>
+
+    <div class="col-sm-offset-4 col-sm-4">
+      <h3></h3> 
+
+
+      <%= bootstrap_form_for(@old_settings, 
+                             :url => council_council_setting_path(@old_settings.council, @old_settings)) do |f| %>
+
+        <%= f.number_field 	:memb_vote_threshold,
+				         	placeholder: 'Membership Threshold',
+				         	id: "threshold",
+				         	type: 'range',
+				         	:min => "0", :max => "100", :step => "1", :value => @old_settings.memb_vote_threshold,
+                	      	class: 'form-control',
+                	      	required: 'true' %>
+        <p>Member Vote Threshold: <span id="threshold_value"></span>%</p>
+
+        
+        <%= f.number_field 	:min_mot_vote,
+				         	placeholder: 'Motion Quorum', 
+				         	id: "quorum",
+				         	type: 'range',
+				         	:min => "0", :max => "100", :step => "1", :value => @old_settings.min_mot_vote,
+				         	class: 'form-control',
+                	      	required: 'true' %>
+        <p>Motion Quorum: <span id="quorum_value"></span>%</p>
+
+        <%= f.number_field 	:campaign_length,
+				         	placeholder: 'Campaign Length',
+				         	id: "campaign",
+				         	type: 'range',
+				         	:min => "0", :max => "120", :step => "1", :value => @old_settings.campaign_length, 
+                	      	class: 'form-control',
+                	      	required: 'true' %>
+        <p>Campaign Length: <span id="campaign_value"></span> days</p>
+
+        <%= f.number_field 	:enactment_delay,
+				         	placeholder: 'Delay of Enactment',
+				         	id: "delay",
+				         	type: 'range',
+				         	:min => "0", :max => "120", :step => "1", :value => @old_settings.enactment_delay, 
+                	      	class: 'form-control',
+                	      	required: 'true' %>
+        <p>Delay of Enactment: <span id="delay_value"></span> days</p>
+
+        <%= f.select	 	:membership_area,
+				         	['Global','Country','State','City','Distance'],
+				         	id: "membership_area",
+                	      	class: 'form-control',
+                	      	required: 'true' %>
+        <p>Membership Area</p>
+  		<div id='distance_toggle'>
+	        <%= f.number_field 	:membership_distance,
+					         	placeholder: 'If Distance, how far?', 
+	                	      	id: "distance",
+					         	type: 'range',
+					         	:min => "0", :max => "200", :step => "1", :value => @old_settings.membership_distance,
+	                	      	class: 'form-control',
+	                	      	required: 'true' %>
+	        <p>Membership Distance: <span id="distance_value"></span> km</p>
+  		</div>
+
+
+        <%= f.submit 'Update Settings', class: 'btn button-standard form-control' %>
+      
+      <% end %>
+
+      <%= link_to 'Back', main_settings_path(@old_settings.council) %>
+
+
+    
+    </div>
+  </div>
+</div>
+
+<script>
+var threshold_slider = document.getElementById("threshold");
+var threshold_output = document.getElementById("threshold_value");
+threshold_output.innerHTML = threshold_slider.value;
+
+threshold_slider.oninput = function() {
+  threshold_output.innerHTML = this.value;
+}
+
+
+var quorum_slider = document.getElementById("quorum");
+var quorum_output = document.getElementById("quorum_value");
+quorum_output.innerHTML = quorum_slider.value;
+
+quorum_slider.oninput = function() {
+  quorum_output.innerHTML = this.value;
+}
+
+
+var campaign_slider = document.getElementById("campaign");
+var campaign_output = document.getElementById("campaign_value");
+campaign_output.innerHTML = campaign_slider.value;
+
+campaign_slider.oninput = function() {
+  campaign_output.innerHTML = this.value;
+}
+
+
+var delay_slider = document.getElementById("delay");
+var delay_output = document.getElementById("delay_value");
+delay_output.innerHTML = delay_slider.value;
+
+delay_slider.oninput = function() {
+  delay_output.innerHTML = this.value;
+}
+
+var area_select = document.getElementById("council_setting_membership_area");
+var distance_span = document.getElementById("distance_toggle");
+distance_span.style.display = "none";
+
+area_select.onchange = function() {
+	if (this.value == "Distance") {
+		distance_span.style.display = "block";
+	} else {
+		distance_span.style.display = "none";
+	}
+}
+
+var distance_slider = document.getElementById("distance");
+var distance_output = document.getElementById("distance_value");
+distance_output.innerHTML = distance_slider.value;
+
+distance_slider.oninput = function() {
+  distance_output.innerHTML = this.value;
+}
+</script>
+
+

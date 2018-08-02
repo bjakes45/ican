@@ -1,0 +1,59 @@
+<div id="main-content" class="col-sm-9">
+    <div id="top-content">
+      <%= render "councils/show/side_menu" %>
+    </div><!-- top-content -->
+	<div id="row">
+		<% @disply_title = false %>
+		<% @council.positions.each do |p| %>
+			<% @votes = p.pos_votes.where(vote_id: current_user, active: false, deactivate: false) %>
+			<% if @votes.count != 0 %>
+				<% @disply_title = true %>
+			<% end %>
+		<% end %>
+		<% if @disply_title %>
+			<h1>Pending Votes</h1>
+		<% end %>
+
+		<% @council.positions.each do |p| %>
+			<% @votes = p.pos_votes.where(vote_id: current_user, active: false, deactivate: false) %>
+			
+			<% if @votes.count != 0 %>
+				<p><%= p.title %></p>
+			<% end %>
+			
+			<% @votes.each do |v| %>
+				<%= v.user.name %>
+				<%= link_to 'Accept', accept_pos_vote_path(pos_vote_id: v.id), type: 'Button', class: 'btn btn-success' %>
+				<%= link_to 'Decline', '#', type: 'Button', class: 'btn btn-danger' %>
+			<% end %>
+		<% end %>
+
+		<% @disply_title = false %>
+		<% @council.positions.each do |p| %>
+			<% @votes = p.pos_votes.where(vote_id: current_user, active: true, deactivate: false) %>
+			
+			<% if @votes.count != 0 %>
+				<% @disply_title = true %>
+			<% end %>
+		<% end %>
+		
+		<% if @disply_title %>
+			<h1>Accepted Votes</h1>
+		<% end %>
+		
+		<% @council.positions.each do |p| %>
+			<% @votes = p.pos_votes.where(vote_id: current_user, active: true, deactivate: false) %>
+			
+			<% if @votes.count != 0 %>
+				<p><%= p.title %></p>
+			<% end %>
+			
+			<% @votes.each do |v| %>
+				<%= v.user.name %>
+					<%= link_to 'Reject', reject_pos_vote_path(pos_vote_id: v.id), type: 'Button', class: 'btn btn-danger' %>
+			<% end %>
+		<% end %>
+
+	</div>   
+
+</div><!-- main-content -->

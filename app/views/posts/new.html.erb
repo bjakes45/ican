@@ -7,16 +7,22 @@
       <h3></h3> 
 
       <%= bootstrap_form_for(@post, 
-                             :url => council_posts_path(@council, @post)) do |f| %>
+                             url: council_posts_path(@council, @post)) do |f| %>
 
-        <%= f.text_field :title,
-				          placeholder: 'Post Title', 
-                	      class: 'form-control' %>
-        <%= f.text_area :content,
-				          placeholder: 'Post Content', 
-                	      class: 'form-control' %>
-        <%= f.check_box :motion %>
-        <%= f.check_box :closed %>
+        <%= f.text_field  :title,
+				                  placeholder: 'Post Title', 
+                	        class: 'form-control',
+                          required: 'true' %>
+        
+        <%= f.text_area   :content,
+				                  placeholder: 'Post Content', 
+                	        class: 'form-control',
+                          required: 'true' %>
+        
+        <%= f.check_box   :motion %>
+        
+        <%= f.check_box   :closed %>
+
         <%= f.submit 'Post to Council', class: 'btn sign-up-button' %>
       <% end %>
       <%= link_to 'Back', :back %>

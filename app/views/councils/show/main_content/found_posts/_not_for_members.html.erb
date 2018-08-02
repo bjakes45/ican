@@ -1,0 +1,9 @@
+<div id="main-content" class="col-sm-9">
+    <div id="top-content">
+      <%= render "councils/show/side_menu" %>
+    </div><!-- top-content -->
+	<div id="row">
+	    <%= render @posts.where(closed: false) %> 
+	</div>   
+
+</div><!-- main-content -->

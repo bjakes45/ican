@@ -1,6 +1,13 @@
 <h3><%= @position.title %></h3>
-<p>
-    <%= link_to council_positions_path(@position.council) do %>
-        <i class="fa fa-home" aria-hidden="true"></i> Back to Positions
+<ul id='links-list'>
+	<li>
+	    <%= link_to council_positions_path(@position.council) do %>
+	        <i class="fa fa-user-tie" aria-hidden="true"></i> All Positions
+	    <% end %>
+	</li>
+	<li>
+    <%= link_to council_path(@council) do %>
+        <i class="fa fa-home" aria-hidden="true"></i> Discussion
     <% end %>
-</p>      
+	</li>
+</ul>      

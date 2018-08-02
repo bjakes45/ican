@@ -1,0 +1,12 @@
+<%= render check_for_memb_vote ? 'memberships/show/pending/not_yet_voted' : 'memberships/show/pending/already_voted' %>
+      <br />
+	  <%= link_to(council_memberships_path(@council), :type => 'button', :class =>'btn btn-dark') do %>
+        <i class="fa fa-users" aria-hidden="true"></i> Current Members
+      <% end %>
+      <%= link_to(council_memberships_path(@council), :type => 'button', :class =>'btn btn-dark') do %>
+        <i class="fa fa-user-plus" aria-hidden="true"></i> Pending
+        <%= render pending_members_badge %>
+      <% end %>
+      <%= link_to(council_path(@membership.council), :type => 'button', :class =>'btn btn-dark') do %>
+        <i class="fa fa-home" aria-hidden="true"></i> Discussion
+      <% end %>

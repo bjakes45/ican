@@ -1,0 +1,14 @@
+<h3><%= @council.title %></h3>
+<h3>Current Members</h3>
+<ul id="links-list">
+	<li>
+		<%= link_to council_membership_path(@council, @council.memberships.where(user_id: current_user, deactivate: false).first) do %>
+	        <i class="fa fa-clock" aria-hidden="true"></i>Request Pending
+	    <% end %>
+	</li>
+	<li>
+    <%= link_to council_path(@council) do %>
+        <i class="fa fa-home" aria-hidden="true"></i>Discussion
+    <% end %>
+	</li>
+</ul>

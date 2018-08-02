@@ -1,0 +1,17 @@
+<p>
+	<i class="fa fa-crown" aria-hidden="true"></i>
+	<% if @post.policies.where(deactivate:false).count > 0 %>
+		  This motion is already a policy!
+	<% else %>
+		<% if @vote_percent > @quorum %>
+		  As Council Executive, you alone may choose to 
+		  <%= link_to "Affirm Motion", new_council_policy_path(@council, post_id: @post.id), type: "Button", class: "btn btn-success" %> or 
+		  <%= link_to "Decline Motion", "#", type: "Button", class: "btn btn-danger" %>
+		</p>
+		<p>
+		  <strong>NOTE:</strong> Do not take this responsibility lightly. Power was granted to you democratically by the members of your council, if you abuse it the council may vote you out at any time. Be sure to engage the members before making any decision. 
+		<% else %>
+			You must wait until a quorum of at least <%= @quorum %>% of the members have cast votes.
+		<% end %>
+	<% end %>
+</p>

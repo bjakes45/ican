@@ -1,0 +1,2 @@
+module CouncilSettingsHelper
+end

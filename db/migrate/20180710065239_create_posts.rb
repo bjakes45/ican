@@ -8,8 +8,12 @@ class CreatePosts < ActiveRecord::Migration
       t.belongs_to :council, index: true
 
       t.boolean :closed, default: true
+      
       t.boolean :motion, default: false
 
+      t.boolean :deactivate, default: false
+      t.timestamp :deactivate_at
+      
       t.timestamps null: false
     end
   end

@@ -1,0 +1,17 @@
+<div class='row'>
+   	<div class='col-sm-offset-2 col-sm-8'>
+   	  <h3>Vote on this Membership!</h3>
+      <%= bootstrap_form_for(@memb_vote, 
+                             :url => council_membership_memb_votes_path(@council, @membership, @memb_vote)) do |f| %>
+
+      <%= f.select  :vote, ['Approve', 'Reject', 'Delay', 'Abstain' ] %>
+	        
+	  <div class='row'>
+   		<div class='col-sm-offset-4 col-sm-4'>
+      		<%= f.submit 'Vote Now', class: 'btn sign-up-button' %>
+   	  	</div>
+   	  </div>
+
+      <% end %>
+   	</div>
+</div>

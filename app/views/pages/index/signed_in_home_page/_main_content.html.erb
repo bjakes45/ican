@@ -3,7 +3,9 @@
    		<%= render 'pages/index/signed_in_home_page/side_menu' %>
 	</div><!-- top-content -->	
 	<div id="content-list" class="row">
-		<%= render @councils %>
+		<div id="feed">
+			<%= render @councils %>
+		</div><!-- feed -->
 	</div><!-- council-list -->
 	<div id="bottom-content" class="infinite-scroll">
 		<%= will_paginate @councils %>		

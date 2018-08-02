@@ -1,0 +1,35 @@
+<div id="single-post-content" class="container">
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+      
+      <h3><%= @council.title %> Settings</h3>
+
+      <p>Membership Threshold: <%= @settings.memb_vote_threshold %>%</p>
+      
+      <p>Motion Quorum: <%= @settings.min_mot_vote %>%</p>
+      
+      <p>Campaign Length: <%= @settings.campaign_length %> days</p>
+
+      <p>Delay of Enactment: <%= @settings.enactment_delay %> days</p>
+
+      <p>Membership Area: <%= @settings.membership_area %></p>
+
+      <p><%= @settings.membership_distance %></p>
+      
+      <%= link_to(council_path(@council), :type => 'button', :class =>'btn btn-dark') do %>
+        <i class="fa fa-home" aria-hidden="true"></i> Discussions
+      <% end %>
+
+      <% if !@executive_incumbent.blank? %>
+        <% if @executive_incumbent.user == current_user %>
+            <%= link_to(edit_council_council_setting_path(@council, @settings), :type => 'button', :class =>'btn btn-info') do %>
+                <i class="fa fa-crown" aria-hidden="true"></i> Update Settings
+            <% end %>
+        <% end %>
+      <% end %>
+
+
+      
+    </div>
+  </div><!-- row -->
+</div>

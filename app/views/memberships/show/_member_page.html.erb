@@ -1,0 +1,82 @@
+<div id="single-member-content" class="container">
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+      
+      <h3>Member Profile: <%= @membership.user.name %></h3>
+      
+      <p></p>
+      
+      <div class="posted-by"></div>
+    </div>
+  </div><!-- row -->
+
+  <div class="row">
+    <div class="col-sm-6">
+    
+      <div class="row">
+        <% @display_heading = false %>
+        <% @council.positions.each do |p| %>
+          <% if p.incumbents.where(user_id: @membership.user, active: true).count != 0 %>
+            <% @display_heading = true %>
+          <% end %>
+        <% end %>
+        <% if @display_heading %>
+          <h3>Position Incumbency</h3>
+        <% end %>
+        <% @council.positions.each do |p| %>
+          <% if p.incumbents.where(user_id: @membership.user, active: true).count != 0 %>
+            <%= link_to p.title, council_position_path(@council, p)  %>
+          <% end %>
+        <% end %>
+      </div>
+      <br/>
+      <p>
+      <%= link_to(council_memberships_path(@council), :type => 'button', :class =>'btn btn-dark') do %>
+        <i class="fa fa-users" aria-hidden="true"></i> Current Members
+      <% end %>
+
+      <%= link_to(council_path(@council), :type => 'button', :class =>'btn btn-dark') do %>
+        <i class="fa fa-home" aria-hidden="true"></i> Discussions
+      <% end %>
+      </p>
+    
+    </div>
+
+    <div class="col-sm-6">
+      <div class='row'>
+        <% @display_heading = false %>
+        <% @council.posts.where(user_id: @membership.user, deactivate:false).each do |p| %>
+          <% if p.policies.where(deactivate:false).count != 0 %>
+            <% @display_heading = true %>
+          <% end %>
+        <% end %>
+        <%if @display_heading %>
+          <h3>Policies by User</h3>
+        <% end %>
+        <% @council.posts.where(user_id: @membership.user, deactivate:false).each do |p| %>
+          <% if p.policies.where(deactivate:false).count != 0 %>
+            <%= render p %>
+          <% end %>
+        <% end %>
+      </div>
+      <div class='row'>
+        <% @display_heading = false %>
+        <% @council.posts.where(user_id: @membership.user, deactivate:false).each do |p| %>
+          <% if p.policies.where(deactivate:false).count == 0 %>
+            <% @display_heading = true %>
+          <% end %>
+        <% end %>
+        <%if @display_heading %>
+          <h3>Posts by User</h3>
+        <% end %>
+        <% @council.posts.where(user_id: @membership.user, deactivate:false).each do |p| %>
+          <% if p.policies.where(deactivate:false).count == 0 %>
+            <%= render p %>
+          <% end %>
+        <% end %>
+      </div>
+
+      
+    </div>
+  </div><!-- row -->
+</div>

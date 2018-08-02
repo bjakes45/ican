@@ -1,0 +1,7 @@
+<div>
+	<h3>You have already voted on this motion</h3>
+	<h3>Your Vote: <%= @mot_vote.vote %></h3>
+	<p>To change your vote you must deactivate the one that already exists first</p>
+	<h3><%= link_to 'Deactivate Vote', deactivate_mot_vote_path(mot_vote_id: @mot_vote.id), :type => "button", :class => 'btn btn-danger' %></h3>
+</div>
+

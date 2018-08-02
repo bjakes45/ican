@@ -1,0 +1,13 @@
+<div id="main-content" class="col-sm-9">
+    <div id="top-content">
+      <%= render "councils/show/side_menu" %>
+    </div><!-- top-content -->
+	<div id="row">
+		<% @posts.each do |p| %>
+			<% if p.policies.where(deactivate: false).count == 0 %>
+			    <%= render p %>
+			<% end %> 
+		<% end %> 
+	</div>   
+
+</div><!-- main-content -->

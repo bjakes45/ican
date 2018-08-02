@@ -1,0 +1,21 @@
+<div id="single-post-content" class="container">
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+      
+      <h3><%= @post.title %></h3>
+      
+      <p><%= @post.content %></p>
+      
+      <div class="posted-by">Posted by <%= @post.user.name %></div>
+      
+      <%= link_to(council_path(@post.council), :type => 'button', :class =>'btn btn-dark') do %>
+        <i class="fa fa-home" aria-hidden="true"></i> Council Home
+      <% end %>
+
+      <%= render current_user_is_poster_buttons %>
+
+
+      
+    </div>
+  </div><!-- row -->
+</div>

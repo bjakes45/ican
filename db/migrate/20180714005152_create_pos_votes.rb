@@ -7,7 +7,13 @@ class CreatePosVotes < ActiveRecord::Migration
 
       t.boolean :active, default: false
       t.timestamp :active_at
+      
+      t.boolean :deactivate, default: false
+      t.timestamp :deactivate_at
 
+      t.boolean :decline, default: false
+      t.timestamp :decline_at
+      
       t.timestamps null: false
     end
   end

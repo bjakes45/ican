@@ -54,3 +54,11 @@
   background-color: white;
 }
 
+.btn-dark {
+  background-color: #424242;
+  color: white;
+}
+.btn-dark:hover, .btn-dark:focus, .btn-dark:active, .btn-dark.active {
+  background-color: #323738;
+  color: white;
+}

@@ -1,22 +1,53 @@
 <h3><%= @council.title %></h3>
+<h3>Discussion Page</h3>
 <ul id="links-list">
     <li>
+        <%= link_to council_policies_path(@council) do %>
+            <i class="fa fa-feather" aria-hidden="true"></i> Policies
+        <% end %>
+    </li>
+    <li>
         <%= link_to council_memberships_path(@council) do %>
-        	<i class="fa fa-address-book" aria-hidden="true"></i> Council Members
+        	<i class="fa fa-address-book" aria-hidden="true"></i> Members
         <% end %>
     </li>
     <li>
         <%= link_to council_positions_path(@council) do %>
-        	<i class="fa fa-user-tie" aria-hidden="true"></i> Council Positions
+        	<i class="fa fa-user-tie" aria-hidden="true"></i> Positions
         <% end %>
     </li>
+    <% if !@executive_incumbent.blank? %>
+        <% if @executive_incumbent.user == current_user %>
+            <li>
+                <%= link_to main_settings_path(@council) do %>
+                    <i class="fa fa-crown" aria-hidden="true"></i> Settings
+                <% end %>
+            </li>
+        <% else %>
+            <li>
+                <%= link_to main_settings_path(@council) do %>
+                    <i class="fa fa-cog" aria-hidden="true"></i> Settings
+                <% end %>
+            </li>
+        <% end %>
+    <% else %>
+            <li>
+                <%= link_to main_settings_path(@council) do %>
+                    <i class="fa fa-cog" aria-hidden="true"></i> Settings
+                <% end %>
+            </li>
+    <% end %>
+
     <li>
         <%= link_to new_council_post_path(@council) do %>
-            <i class="fa fa-pen" aria-hidden="true"></i> New Post
+            <i class="fa fa-lightbulb" aria-hidden="true"></i> New Post
         <% end %>
     </li>
+
+
 </ul>      
 
 <p class="council-desc"><%= @council.description %></p>
 
 <div class="posted-by">Created by <%= @council.user.name %></div>
+
