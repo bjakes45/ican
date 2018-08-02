@@ -40,6 +40,9 @@
       <% end %>
       
       <%= render contact_user_partial_path %>
+      <% current_user.private_conversations.each do |c| %>
+        <%# c.destroy %>
+      <% end %>
 
       </p>
     

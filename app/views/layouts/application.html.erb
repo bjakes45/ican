@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>Ican</title>
+  <%= include_gon(:init => true) %>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -13,6 +14,7 @@
 
 <%= render 'layouts/navigation' %>
 <%= yield %>
+<%= render 'layouts/private_conversations_windows' %>
 
 </body>
 </html>

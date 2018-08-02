@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
+  before_action :opened_conversations_windows
 	
 	def states
     	render json: CS.states(params[:country]).to_json
@@ -45,6 +46,17 @@ class ApplicationController < ActionController::Base
 		if !check_user_membership
 			redirect_to council_path(@council)
 		end
+	end
+
+	def opened_conversations_windows
+	  if user_signed_in?
+	    # opened conversations
+	    session[:private_conversations] ||= []
+	    @private_conversations_windows = Private::Conversation.includes(:recipient, :messages)
+	                                      .find(session[:private_conversations])
+	  else
+	    @private_conversations_windows = []
+	  end
 	end
 
 end
