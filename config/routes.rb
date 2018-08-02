@@ -48,6 +48,15 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :private do 
+    resources :conversations, only: [:create] do
+      member do
+        post :close
+      end
+    end
+    resources :messages, only: [:index, :create]
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

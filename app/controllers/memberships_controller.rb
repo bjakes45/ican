@@ -17,6 +17,10 @@ class MembershipsController < ApplicationController
 	def show
 		@membership = Membership.find(params[:id])
 		
+		if user_signed_in?
+  			@message_has_been_sent = conversation_exist?
+		end
+
 		if !@membership.memb_votes.where(user_id: current_user, deactivate: false).empty?
 			@memb_vote = @membership.memb_votes.where(user_id: current_user, deactivate: false).first
 		else
@@ -76,6 +80,10 @@ class MembershipsController < ApplicationController
 
 	def find_pending_members
 		@pending_members = @council.memberships.where(active:false, deactivate:false)
+	end
+
+	def conversation_exist?
+	  Private::Conversation.between_users(current_user.id, @post.user.id).present?
 	end
 
 end

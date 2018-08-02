@@ -38,6 +38,9 @@
       <%= link_to(council_path(@council), :type => 'button', :class =>'btn btn-dark') do %>
         <i class="fa fa-home" aria-hidden="true"></i> Discussions
       <% end %>
+      
+      <%= render contact_user_partial_path %>
+
       </p>
     
     </div>
