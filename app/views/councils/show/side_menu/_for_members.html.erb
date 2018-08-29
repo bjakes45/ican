@@ -1,5 +1,7 @@
 <h3><%= @council.title %></h3>
 <h3>Discussion Page</h3>
+
+<div id="side-menu">
 <ul id="links-list">
     <li>
         <%= link_to council_policies_path(@council) do %>
@@ -8,12 +10,12 @@
     </li>
     <li>
         <%= link_to council_memberships_path(@council) do %>
-        	<i class="fa fa-address-book" aria-hidden="true"></i> Members
+            <i class="fa fa-address-book" aria-hidden="true"></i> Members
         <% end %>
     </li>
     <li>
         <%= link_to council_positions_path(@council) do %>
-        	<i class="fa fa-user-tie" aria-hidden="true"></i> Positions
+            <i class="fa fa-user-tie" aria-hidden="true"></i> Positions
         <% end %>
     </li>
     <% if !@executive_incumbent.blank? %>
@@ -38,14 +40,52 @@
             </li>
     <% end %>
 
-    <li>
-        <%= link_to new_council_post_path(@council) do %>
+    <li id="new_post">
+        <%= link_to '#' do %>
             <i class="fa fa-lightbulb" aria-hidden="true"></i> New Post
         <% end %>
     </li>
-
-
 </ul>      
+</div>
+
+<div id="top-content">
+    <p>
+        <%= link_to(council_policies_path(@council), type: "Button", class: "btn btn-dark") do %>
+            <i class="fa fa-feather" aria-hidden="true"></i> Policies
+        <% end %>
+
+        <%= link_to(council_memberships_path(@council), type: "Button", class: "btn btn-dark") do %>
+            <i class="fa fa-address-book" aria-hidden="true"></i> Members
+        <% end %>
+
+        <%= link_to(council_positions_path(@council), type: "Button", class: "btn btn-dark") do %>
+            <i class="fa fa-user-tie" aria-hidden="true"></i> Positions
+        <% end %>
+
+
+    </p>     
+    <p>
+        <% if !@executive_incumbent.blank? %>
+            <% if @executive_incumbent.user == current_user %>
+                    <%= link_to(main_settings_path(@council), type: "Button", class: "btn btn-dark") do %>
+                        <i class="fa fa-crown" aria-hidden="true"></i> Settings
+                    <% end %>
+            <% else %>
+                    <%= link_to(main_settings_path(@council), type: "Button", class: "btn btn-dark") do %>
+                        <i class="fa fa-cog" aria-hidden="true"></i> Settings
+                    <% end %>
+            <% end %>
+        <% else %>
+                    <%= link_to(main_settings_path(@council), type: "Button", class: "btn btn-dark") do %>
+                        <i class="fa fa-cog" aria-hidden="true"></i> Settings
+                    <% end %>
+        <% end %>
+
+        <%= link_to('#',id: "new_post", type: "Button", class: "btn btn-dark") do %>
+            <i class="fa fa-lightbulb" aria-hidden="true"></i>New Post
+        <% end %>
+    </p>     
+</div>
 
 <p class="council-desc"><%= @council.description %></p>
 

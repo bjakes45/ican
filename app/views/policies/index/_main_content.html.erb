@@ -14,8 +14,8 @@
 				<h1>Active Policies</h1>
 			<% end %>
 			<% @council.posts.each do |p| %>
-				<% if p.policies.where(active: true, deactivate: false).count ==1 %>
-					<%= render p %>
+				<% if p.policies.where(active: true, deactivate: false).count == 1 %>
+					<%= render p.policies.where(active: true, deactivate: false).first %>
 				<% end %>
 			<% end %>
 		</div>
@@ -37,5 +37,6 @@
 			<% end %>
 		</div>
 	</div>
+
 	
 </div><!-- main-content -->

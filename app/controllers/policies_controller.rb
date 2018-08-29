@@ -1,10 +1,15 @@
 class PoliciesController < ApplicationController
+	before_action :authenticate_user!	
 	before_action :find_council
 	before_action :find_executive, only: :index
 	before_action :check_executive, only: [:new]
 
 	def index
-
+		file = 'lib/assets/council_constitution.txt'
+		@text = ""
+		File.readlines(file).each do |line|
+			@text = @text+ line
+		end
 	end
 
 	def new

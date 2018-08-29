@@ -1,34 +1,17 @@
 <div id="content-list" class='row'>
-	<% @members.each do |m| %>
-	 <div class='col-sm-6'>
-	    <div class='pos-votes-card'>
-		  <div class="card">
-		    <div class="card-block">
-		      <h4 class="pos-votes-text">
-	      		<div class="row">
-	      			<div class='col-sm-6'>
-	      				<%= m[0].user.name %>
-	      			</div>
-	      			<div class='col-sm-6'>
-		    			<p>Votes for: <%= m[1] %></p>
-		    			<p>Pending Votes: <%= m[2] %></p>
-		    			
-	      			</div>
-	      		</div>
-		      </h4>
-		      <div class="pos-votes-content">
-		    	<h3> <%= m[0].user.name %></h3> 
-		        <p>
-		        	<%= @position.title %>: <%= @position.description %>
-		        </p>
-	    	    <%= link_to "I'm interested", 
-	    	    	new_council_position_pos_vote_path(@position.council, @position, vote_id: m[0].user.id),
-	    	    	class: 'interested' 
-	    	    %>
-		      </div>
-		    </div>
-		  </div><!-- card -->
-	 	</div><!-- pos-votes-card -->
-	  </div>
+	<% if @c_members.present? %>
+		<h1>Candidates</h1>
+		<% @c_members.each do |m| %>
+			<%= render partial: 'pos_votes/member', locals: {m: m } %> 
+		<% end %>
 	<% end %>
+</div>
+<div id="content-list" class='row'>
+	<% if @members.present? %>
+		<h1>Non-Candidates</h1>
+		<% @members.each do |m| %>
+			<%= render partial: 'pos_votes/member', locals: {m: m } %> 
+		<% end %>
+	<% end %>
+	
 </div>

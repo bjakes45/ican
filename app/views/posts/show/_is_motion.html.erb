@@ -4,11 +4,11 @@
       
       <h2>Motion: <%= @post.title %></h2>
       
-      <p><%= @post.content %></p>
+      <p><%= simple_format(@post.content) %></p>
       
       <div class="posted-by">Posted by <%= @post.user.name %></div>
       
-      <% if @executive_incumbent != "" %>
+      <% if @executive_incumbent.present? %>
         <% if @executive_incumbent.user == current_user %> 
           <%= render 'posts/show/is_motion/executive_options' %>
         <% end %>

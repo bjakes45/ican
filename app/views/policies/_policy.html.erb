@@ -1,0 +1,31 @@
+<div class="col-sm-4 single-policy-card">
+  <div class="card">
+    <div class="card-block">
+      <h4 class="policy-text">
+        <div class="policy-text-top">
+        <%= truncate(policy.post.title, :length => 60) %>
+        </div>
+        <div class="policy-text-bottom">
+          <%= policy.post.motion ? "Motion" : "Post" %>
+        </div>
+      </h4>
+      <div class="policy-content">
+        <div class="posted-by">
+          Created <%= policy.created_at.in_time_zone('Pacific Time (US & Canada)').strftime('%b %-d, %Y at %l:%m %p %Z') %> by <%= policy.user.name %>
+        </div>
+        <h3><%= policy.post.title %></h3> 
+        <% if policy.post.content.length > 140 %>
+          <p><%= policy.post.content[0,140]+"..." %></p>
+        <% else %>
+          <p><%= policy.post.content %></p>
+        <% end %>
+        <%= policy.post.council.memberships.where(user_id: current_user.id).empty? ?
+           link_to("Must be Member", new_council_membership_path(policy.post.council), class: 'interested') :
+           policy.post.motion ? 
+            link_to("Debate Motion", council_post_path(policy.post.council.id, policy.post.id), class: 'interested') :
+            link_to("Discuss policy", council_post_path(policy.post.council.id, policy.post.id), class: 'interested')
+           %>
+      </div>
+    </div>
+  </div><!-- card -->
+</div><!-- col-sm-4 -->

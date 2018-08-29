@@ -1,0 +1,35 @@
+.single-policy-card {
+  min-height: 135px;
+  max-height: 135px;
+  box-shadow: 1px 1px 4px rgba(0,0,0, 0.3);
+  color: black;
+  padding: 10px;
+  text-align: left;
+  transition: border 0.1s, background 0.5s;
+  .post-text {
+    overflow: hidden;
+  }
+  a, a:active, a:hover {
+    color: black;
+  }
+  &:hover {
+    cursor: pointer;
+    background: white;
+    box-shadow: none;
+    border-radius: 1%;
+  }
+}
+
+.policy-text-top {
+  min-height: 45px;
+  max-height: 45px;
+  overflow: hidden;
+}
+.policy-text-bottom {
+  text-align: right;
+  padding-top: 15px;  
+}
+
+.policy-content {
+  display: none;
+}

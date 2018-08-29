@@ -6,6 +6,9 @@
         <%= truncate(position.title, :length => 60) %>
         </div>
         <div class="position-text-bottom">
+          <% if current_user.candidates.where(position_id: position.id).present? %>
+            <i class="fa fa-award" aria-hidden="true"></i>
+          <% end %>
           <% if position.council.positions.order('created_at ASC').first == position %>
             <i class="fa fa-crown" aria-hidden="true"></i>
           <% end %>

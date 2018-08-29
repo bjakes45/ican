@@ -1,4 +1,5 @@
 class CouncilSettingsController < ApplicationController
+	before_action :authenticate_user!	
 
 	def edit
 		@old_settings = CouncilSetting.find(params[:id])

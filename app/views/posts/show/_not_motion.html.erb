@@ -14,7 +14,10 @@
 
       <%= render current_user_is_poster_buttons %>
 
+      <h3>Add a comment</h3>
+      <%= render 'posts/show/comment_form' %>
 
+      <%= @comments.count %>
       
     </div>
   </div><!-- row -->

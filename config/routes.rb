@@ -45,6 +45,7 @@ Rails.application.routes.draw do
     end
     resources :positions do
       resources :pos_votes
+      resources :candidates, only: [:create]
     end
   end
 

@@ -3,7 +3,7 @@
       <%= render "positions/index/side_menu" %>
     </div><!-- top-content -->	  
 	<div id="content-list" class="row" >
-		<%= render @council.positions %>
+		<%= render @council.positions.where(active:true) %>
 	</div>
 	
 </div><!-- main-content -->

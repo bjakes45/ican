@@ -1,0 +1,12 @@
+<% i = 0 %>
+<% @conversation.messages.each do |m| %>
+
+	<%if  i == 0 %>
+		<%= render partial: 'message', collection: @conversation.messages, locals: {previous_message: "" } %>
+		<% i += 1 %>
+	<% else %>
+		<%= render partial: 'message', collection: m, locals: {previous_message: @conversation.messages[i-1] } %>
+		<% i += 1 %>
+	<% end %>
+
+<% end %>

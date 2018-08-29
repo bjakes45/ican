@@ -7,6 +7,8 @@ class PostsController < ApplicationController
 	def show
 
 		@post = Post.find(params[:id])
+		@comments = Post.where(parent_post_id: params[:id])
+		
 		if @post.mot_votes.where(user_id: current_user.id, deactivate: false).empty?
 			@mot_vote = MotVote.new
 		else
@@ -32,10 +34,6 @@ class PostsController < ApplicationController
 	
 	end
 
-	def new
-		@council = Council.find(params[:council_id])
-		@post = Post.new
-	end
 
 	def create
 		@post = Post.new(post_params)

@@ -11,10 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180802000122) do
+ActiveRecord::Schema.define(version: 20180803135048) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "candidates", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "position_id"
+    t.boolean  "deactivate",    default: false
+    t.datetime "deactivate_at"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+  end
+
+  add_index "candidates", ["position_id"], name: "index_candidates_on_position_id", using: :btree
+  add_index "candidates", ["user_id"], name: "index_candidates_on_user_id", using: :btree
 
   create_table "council_categories", force: :cascade do |t|
     t.string   "title"
@@ -62,12 +74,14 @@ ActiveRecord::Schema.define(version: 20180802000122) do
   create_table "incumbents", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "position_id"
-    t.boolean  "active",      default: false
+    t.boolean  "active",        default: false
     t.datetime "active_at"
-    t.boolean  "elected",     default: false
+    t.boolean  "deactivate",    default: false
+    t.datetime "deactivate_at"
+    t.boolean  "elected",       default: false
     t.datetime "elected_at"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
   end
 
   add_index "incumbents", ["position_id"], name: "index_incumbents_on_position_id", using: :btree
@@ -165,14 +179,15 @@ ActiveRecord::Schema.define(version: 20180802000122) do
   create_table "posts", force: :cascade do |t|
     t.string   "title"
     t.text     "content"
+    t.integer  "parent_post_id"
     t.integer  "user_id"
     t.integer  "council_id"
-    t.boolean  "closed",        default: true
-    t.boolean  "motion",        default: false
-    t.boolean  "deactivate",    default: false
+    t.boolean  "closed",         default: true
+    t.boolean  "motion",         default: false
+    t.boolean  "deactivate",     default: false
     t.datetime "deactivate_at"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
   end
 
   add_index "posts", ["council_id"], name: "index_posts_on_council_id", using: :btree

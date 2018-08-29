@@ -1,0 +1,16 @@
+$(document).on('turbolinks:load', function() {
+     // when a policy is clicked, show its full content in a modal window
+    $("body").on( "click", ".single-policy-card, .single-policy-list", function() {
+      var posted_by = $(this).find('.policy-content .posted-by').html();
+      var policy_heading = $(this).find('.policy-content h3').html();
+      var policy_content = $(this).find('.policy-content p').html();
+      var interested = $(this).find('.policy-content .interested').attr('href');
+      var interested_text = $(this).find('.policy-content .interested').html();
+      $('.modal-header .posted-by').text(posted_by);
+      $('.loaded-data h3').text(policy_heading);
+      $('.loaded-data p').text(policy_content);
+      $('.loaded-data .interested a').attr('href', interested);
+      $('.loaded-data .interested a').text(interested_text);
+      $('.myModal').modal('show');
+    });
+});

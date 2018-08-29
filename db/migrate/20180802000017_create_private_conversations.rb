@@ -4,6 +4,9 @@ class CreatePrivateConversations < ActiveRecord::Migration
       t.integer :recipient_id
       t.integer :sender_id
 
+      #t.belongs_to :council, index: true
+
+
       t.timestamps
     end
     add_index :private_conversations, :recipient_id

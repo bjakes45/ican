@@ -1,4 +1,6 @@
 class MembVotesController < ApplicationController
+	before_action :authenticate_user!	
+	
 	def create
 		@memb_vote = MembVote.new
 		@membership = Membership.find(params[:membership_id])

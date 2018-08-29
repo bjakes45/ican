@@ -1,6 +1,7 @@
+<%= render 'posts/modal' %>
 <div id="single-member-content" class="container">
   <div class="row">
-    <div class="col-sm-6 col-sm-offset-3">
+    <div class="col-sm-6 col-sm-offset-3 text-center">
       
       <h3>Member Profile: <%= @membership.user.name %></h3>
       
@@ -11,42 +12,6 @@
   </div><!-- row -->
 
   <div class="row">
-    <div class="col-sm-6">
-    
-      <div class="row">
-        <% @display_heading = false %>
-        <% @council.positions.each do |p| %>
-          <% if p.incumbents.where(user_id: @membership.user, active: true).count != 0 %>
-            <% @display_heading = true %>
-          <% end %>
-        <% end %>
-        <% if @display_heading %>
-          <h3>Position Incumbency</h3>
-        <% end %>
-        <% @council.positions.each do |p| %>
-          <% if p.incumbents.where(user_id: @membership.user, active: true).count != 0 %>
-            <%= link_to p.title, council_position_path(@council, p)  %>
-          <% end %>
-        <% end %>
-      </div>
-      <br/>
-      <p>
-      <%= link_to(council_memberships_path(@council), :type => 'button', :class =>'btn btn-dark') do %>
-        <i class="fa fa-users" aria-hidden="true"></i> Current Members
-      <% end %>
-
-      <%= link_to(council_path(@council), :type => 'button', :class =>'btn btn-dark') do %>
-        <i class="fa fa-home" aria-hidden="true"></i> Discussions
-      <% end %>
-      
-      <%= render contact_user_partial_path %>
-      <% current_user.private_conversations.each do |c| %>
-        <%# c.destroy %>
-      <% end %>
-
-      </p>
-    
-    </div>
 
     <div class="col-sm-6">
       <div class='row'>
@@ -80,9 +45,65 @@
             <%= render p %>
           <% end %>
         <% end %>
+      </div>  
+    </div>
+    
+    <div class="col-sm-6">
+      <div class="row">
+        <% @display_heading = false %>
+        <% @council.positions.each do |p| %>
+          <% if p.incumbents.where(user_id: @membership.user, active: true).count != 0 %>
+            <% @display_heading = true %>
+          <% end %>
+        <% end %>
+        <% if @display_heading %>
+          <h3>Position Incumbency</h3>
+        <% end %>
+        <% @council.positions.each do |p| %>
+          <% if p.incumbents.where(user_id: @membership.user, active: true).count != 0 %>
+            <%= link_to p.title, council_position_path(@council, p)  %>
+          <% end %>
+        <% end %>
+      </div>
+    
+      <div class="row">
+        <% @display_heading = false %>
+        <% if @membership.user.memberships.where(active: true, deactivate: false).where.not(council_id: @council.id).present? %>
+            <% @display_heading = true %>
+        <% end %>
+        <% if @display_heading %>
+          <h3>Other Council Memberships</h3>
+        <% end %>
+        <% @membership.user.memberships.where(active: true, deactivate: false).where.not(council_id: @council.id).each do |m| %>
+            <%= link_to m.council.title, council_path(m.council)  %>
+        <% end %>
       </div>
 
-      
+    
     </div>
   </div><!-- row -->
+  <div class='row'>
+    <div class="col-sm-8 col-sm-offset-2">
+      <p class='text-center'>
+        <%= render contact_user_partial_path %>
+        <% current_user.private_conversations.each do |c| %>
+          <%# c.destroy %>
+        <% end %>
+      </p>
+      <p class='text-center'>
+        <%= link_to("#", :type => 'button', :class =>'btn btn-dark') do %>
+          <i class="fa fa-medal" aria-hidden="true"></i> Request Representation
+        <% end %>
+      </p>
+      <p class='text-center'>
+        <%= link_to(council_memberships_path(@council), :type => 'button', :class =>'btn btn-dark') do %>
+          <i class="fa fa-users" aria-hidden="true"></i> Current Members
+        <% end %>
+
+        <%= link_to(council_path(@council), :type => 'button', :class =>'btn btn-dark') do %>
+          <i class="fa fa-home" aria-hidden="true"></i> Discussions
+        <% end %>
+      </p>
+    </div>
+  </div>
 </div>

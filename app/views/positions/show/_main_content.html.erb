@@ -5,12 +5,17 @@
 	<div id="content-list">
 		<div class='row'>
 			<div class='col-sm-4'>
-				<%= render incumbent_info %>
-				
+				<div class="incumbent_info">
+					<%= render incumbent_info %>
+				</div>
+				<div class="candidate_info">
+					<%= render candidate_info %>
+				</div>
+
 
 			</div>
 			<div class='col-sm-8'>
-				<%= bar_chart @members_data %>
+				<%= bar_chart @a_members_data %>
 			</div>
 		</div>      	
 		<%= render 'pos_votes/member_pos_vote' %>

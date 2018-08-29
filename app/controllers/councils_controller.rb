@@ -6,13 +6,15 @@ class CouncilsController < ApplicationController
 	before_action :find_executive, only: [:show, :settings]	
 
 	def show
-		@posts = @council.posts.where(deactivate: false)
+		@posts = @council.posts.where(deactivate: false, parent_post_id: nil)
+		@post = Post.new
+
 	end
 
 	def new
 		@council = Council.new
 		@council_categories = CouncilCategory.all
-		file = 'lib/assets/constitution_boilerplate.txt'
+		file = 'lib/assets/council_constitution.txt'
 		@text = ""
 		File.readlines(file).each do |line|
 		      @text = @text + line
@@ -38,7 +40,7 @@ class CouncilsController < ApplicationController
 		@council_settings.user_id = current_user.id
 		@council_settings.save
 
-		redirect_to council_settings_path(@council)
+		redirect_to main_settings_path(@council)
 	else
 		@settings = @council.council_settings.where(deactivate:false).first
 	end
@@ -72,21 +74,58 @@ class CouncilsController < ApplicationController
 		
 			 	@membership.save
 			end
+			positions = [
+							["Executive", "The Executive is responsible for enacting decisions made by the Council."],
+							["Justice", "The Justice ensures that all members carry out the decisions of the Council in good faith."],
+							["Speaker", "The Speaker facilitates the Council's decision making process."],
+							["Treasurer", "The Treasurer manages the finances of the Council."]
+						]
+			positions.each do |p|
+				@position = Position.new
+				@position.council_id = @council.id
+				@position.user_id = current_user.id
+				@position.title = p[0]
+				@position.description = p[1]
+				@position.active = true
+				@position.save
+			end
 
-			@position = Position.new
-			@position.title = "Executive"
-			@position.description = "The Executive is responsible for enacting decisions made by the Council"
-			@position.active = true
-			@position.save
+			i = 0
+			@council.positions.each do |p|
+				if i != 0
+					p.active = false
+					p.save
+				end
+				i += 1
+			end
 
 			@post = Post.new
-			@post.title = @council.name+" Constitution"
-			file = 'lib/assets/constitution_boilerplate.txt'
+			@post.council_id = @council.id
+			@post.user_id = current_user.id
+			@post.title = @council.title.to_s+" Constitution "
+			file = 'lib/assets/council_constitution.txt'
 			@text = ""
 			File.readlines(file).each do |line|
-		      @text = @text+ line
-		    end
+			    @text = @text+ line
+			end
 			@post.content = @text
+			@post.motion = true
+			@post.save
+
+			@policy = Policy.new(post_id: @post.id, user_id: current_user.id, active: true)
+			@policy.save
+			
+			@post = Post.new
+			@post.council_id = @council.id
+			@post.user_id = current_user.id
+			@post.title = @council.title.to_s+" Welcome"
+			file = 'lib/assets/council_welcome.txt'
+			@text = ""
+			File.readlines(file).each do |line|
+			    @text = @text+ line
+			end
+			@post.content = @text
+			@post.save
 
 			redirect_to root_path
 		else

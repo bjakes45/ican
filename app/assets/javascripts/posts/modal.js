@@ -1,5 +1,5 @@
 $(document).on('turbolinks:load', function() {
-  if(window.location.pathname == '/user_posts' ||window.location.pathname == '/council_posts') {
+  if(window.location.pathname == '/user_posts' || window.location.pathname == '/council_posts') {
     $("body").on( "click", ".single-post-card, .single-post-list", function() {
       var interested = $(this).find('.post-content .interested').attr('href');
       window.location.href = interested

@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   has_many :posts
   has_many :memberships, dependent: :destroy
   has_many :positions
+  has_many :candidates
   has_many :incumbents
   has_many :policies
   

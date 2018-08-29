@@ -8,7 +8,7 @@
     background: white;
     min-height: 200px;
     text-align: center;
-    display:none
+    display:none;
   }
 
   #content-list {
@@ -25,6 +25,10 @@
 }
 #side-menu, #top-content {
   padding: 0 10px 0 0;
+  #top-content {
+    text-align: center;
+    display:none;
+  }
   #links-list {
     margin-top: 20px;
     padding: 0;
@@ -54,4 +58,12 @@
 }
 .infinite-scroll {
   display: none;
+}
+
+.scrollToTop {
+  display: none;
+  float: top;
+  position: fixed;
+  bottom: 15px;
+  left: 150px;
 }
