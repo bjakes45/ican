@@ -1,0 +1,27 @@
+<div class="col-sm-6 single-post-card">
+  <div class="card">
+    <div class="card-block">
+      <h4 class="post-text">
+        <div class="post-text-top">
+        <%= truncate(post.content, :length => 300) %>
+        </div>
+        <div class="post-text-bottom">
+          <% post.motion ? "Motion" : "Post" %>
+        </div>
+      </h4>
+      <div class="post-content">
+        <div class="posted-by">
+          Created <%= post.created_at.in_time_zone('Pacific Time (US & Canada)').strftime('%b %-d, %Y at %l:%m %p %Z') %> by <%= post.user.name %>
+        </div>
+        <h3><%= post.title %></h3> 
+        <p><%= post.content %></p>
+        <%= post.council.memberships.where(user_id: current_user.id).empty? ?
+           link_to("Must be Member", new_council_membership_path(post.council), class: 'interested') :
+           post.motion ? 
+            link_to("Debate Motion", council_post_path(post.council.id, post.id), class: 'interested') :
+            link_to("Discuss Post", council_post_path(post.council.id, post.id), class: 'interested')
+           %>
+      </div>
+    </div>
+  </div><!-- card -->
+</div><!-- col-sm-4 -->

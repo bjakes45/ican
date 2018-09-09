@@ -17,8 +17,11 @@
       <h3>Add a comment</h3>
       <%= render 'posts/show/comment_form' %>
 
-      <%= @comments.count %>
-      
     </div>
+
+    <div class="col-sm-8 col-sm-offset-2">
+      <%= render partial: "posts/comment", collection: @comments, as: :post %>      
+    </div>
+      
   </div><!-- row -->
 </div>

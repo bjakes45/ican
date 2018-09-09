@@ -1,7 +1,14 @@
-      <form class="new-comment">
-        <input name="post_id" type="hidden" value="<%= @post.id %>">
-        <input name="user_id" type="hidden" value="<%= current_user.id %>">
-        <input name="title" type="hidden" placeholder="Comment Title"></input>
-        <textarea name="content" rows="3" class="form-control" placeholder="Type a message..."></textarea>
-        <input type="submit" class="btn btn-dark submit-comment">
-      </form>
+
+  <%= form_tag({controller: "posts", action: "comment"},
+              method: "post") do %>
+  <%= hidden_field_tag(:title, "Comment")  %>
+  <%= hidden_field_tag(:user_id, current_user.id)  %>
+  <%= hidden_field_tag(:parent_post_id, @post.id)  %>
+  <%= text_area_tag(:content,
+                    nil,
+  					id: "comment-text-area",
+                    rows: 3,
+                    class: 'form-control', 
+                    placeholder: 'Leave a comment...') %>
+  <%= submit_tag('Leave a Comment', class: 'btn ') %>
+<% end %>

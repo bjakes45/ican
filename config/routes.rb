@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get 'user_posts', to: 'pages#user_posts'  
   
   get 'councils/:id/settings', to: 'councils#settings', as: 'main_settings'  
-
+  post 'councils/:council_id/posts/:id/comment', to: 'posts#comment'
   get 'deactivate_post', to: 'posts#deactivate' 
   
   get 'deactivate_mot_vote', to: 'mot_votes#deactivate' 

@@ -47,6 +47,18 @@ class PostsController < ApplicationController
 		end
 	end
 
+	def comment
+		@post = Post.new(comment_params)
+		@post.council_id = @council.id
+		@post.user_id = current_user.id
+
+		if @post.save
+			redirect_to council_post_path(@council, params[:parent_post_id])
+		else
+			redirect_to council_post_path(@council, params[:parent_post_id])
+		end
+	end
+
 	def deactivate
 		@post = Post.find(params[:post_id])
 		@post.deactivate = true
@@ -75,7 +87,12 @@ class PostsController < ApplicationController
 			
 		end
 
-	def post_params
-	  params.require(:post).permit(:title, :content, :motion, :closed)
-	end
+		def post_params
+		  params.require(:post).permit(:title, :content, :motion, :closed)
+		end
+
+		def comment_params
+		  params.permit(:title, :content, :motion, :closed, :parent_post_id)
+		end
+
 end
