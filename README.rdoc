@@ -10,10 +10,10 @@ Deployment instructions:
 * Clone repository into desired directory
 * <tt>cd ican</tt>
 * Database creation:
-	* Add your postgres username and password in <tt>config/database.yml</tt> 
-	* <tt>rails db:create</tt>
-	* <tt>rails db:migrate</tt>
-	* <tt>rails db:seed</tt> (for test data)
+  * Add your postgres username and password in <tt>config/database.yml</tt> 
+  * <tt>rails db:create</tt>
+  * <tt>rails db:migrate</tt>
+  * <tt>rails db:seed</tt> (for test data)
 * Start server: <tt>rails s</tt>
 * Navigate to <tt>http://localhost:3000</tt> 
 
