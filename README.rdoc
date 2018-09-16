@@ -1,28 +1,24 @@
-== README
+== Interactivist Community Action Network(ICAN)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+System dependencies:
+	* Ruby 2.3+
+	* Rails 5+
+	* Postgresql
+	* phanton.js (for testing)
 
-Things you may want to cover:
+Deployment instructions:
+	* Clone repository into desired directory
+	* <tt>cd ican</tt>
+	* Database creation:
+		* Add your postgres username and password in <tt>config/database.yml</tt> 
+		* <tt>rails db:create</tt>
+		* <tt>rails db:migrate</tt>
+		* <tt>rails db:seed</tt> (for test data)
+	* Start server: <tt>rails s</tt>
+	* Navigate to <tt>http://localhost:3000</tt> 
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Services:
+	* User Authentication by Devise
+	* Location Geocoding
+	* Bootstrap Framework
+	* Action Channel subscriptions for Instant Messaging
