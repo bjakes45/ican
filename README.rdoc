@@ -1,12 +1,12 @@
-# Interactivist Community Action Network(ICAN)
+= Interactivist Community Action Network(ICAN)
 
-##System dependencies:
+== System dependencies:
 * Ruby 2.3+
 * Rails 5+
 * Postgresql
 * phanton.js (for testing)
 
-##Deployment instructions:
+== Deployment instructions:
 * Clone repository into desired directory
 * <tt>cd ican</tt>
 * Database creation:
@@ -17,7 +17,7 @@
 * Start server: <tt>rails s</tt>
 * Navigate to <tt>http://localhost:3000</tt> 
 
-##Services:
+== Services:
 * User Authentication by Devise
 * Location Geocoding
 * Bootstrap Framework
