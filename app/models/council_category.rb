@@ -1,3 +1,3 @@
-class CouncilCategory < ActiveRecord::Base
+class CouncilCategory < ApplicationRecord
 	has_many :councils
 end

@@ -1,4 +1,4 @@
-class MotVote < ActiveRecord::Base
+class MotVote < ApplicationRecord
 	
 	belongs_to :user
 	belongs_to :post

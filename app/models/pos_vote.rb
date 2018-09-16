@@ -1,4 +1,4 @@
-class PosVote < ActiveRecord::Base
+class PosVote < ApplicationRecord
 
 	belongs_to :user
 	belongs_to :vote_id, :class_name => "User", :foreign_key => "vote_id"

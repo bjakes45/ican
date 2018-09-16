@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   before_action :opened_conversations_windows
+  before_action :set_cookies
 	
 	def states
     	render json: CS.states(params[:country]).to_json
@@ -13,6 +14,18 @@ class ApplicationController < ActionController::Base
   	end
 
 	private
+
+	def set_cookies
+		if user_signed_in?
+  			if cookies[:user_id].blank?
+  			  	cookies[:user_id]= current_user.id
+			end
+		else
+			if cookies[:user_id].present?
+  			  	cookies.delete :user_id
+			end
+		end
+	end
 
   	def after_sign_in_path_for(resource)
 		check_any_user_memberships ? user_council_posts_path : root_path

@@ -1,4 +1,4 @@
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   
   has_many :councils
   has_many :councils_settings

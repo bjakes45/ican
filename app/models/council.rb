@@ -1,4 +1,4 @@
-class Council < ActiveRecord::Base
+class Council < ApplicationRecord
 
 	belongs_to :user
 	belongs_to :council_category

@@ -1,4 +1,4 @@
-class Incumbent < ActiveRecord::Base
+class Incumbent < ApplicationRecord
 
 	belongs_to :user
 	belongs_to :position
